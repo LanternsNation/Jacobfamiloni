@@ -300,42 +300,37 @@ function TheManMobile() {
         alt={photos.about.alt}
         loading="lazy"
         decoding="async"
-        className="absolute left-[4%] bottom-0 h-[calc(100%-3.25rem)] w-[58%] object-cover object-[60%_0%]"
+        className="absolute -left-[3%] bottom-0 h-[82%] w-[52%] object-cover object-[50%_0%]"
       />
-      {/* fade the photo's cropped left edge into the page */}
-      <div className="absolute inset-y-0 left-[4%] w-[12%] bg-gradient-to-r from-[#EFECE6] to-transparent" aria-hidden />
       {/* soft ivory edge so the copy column reads cleanly */}
-      <div className="absolute inset-y-0 left-[44%] w-[18%] bg-gradient-to-r from-transparent to-[#EFECE6]" aria-hidden />
-      {/* vertical label */}
-      <div className="absolute left-2.5 top-10 z-[2] flex flex-col items-center">
-        <span className="text-[0.55rem] tracking-[0.28em] uppercase text-ink/70 [writing-mode:vertical-rl] rotate-180">Chapter I · The Man</span>
-        <span className="mt-3 h-12 w-px bg-ink/40" />
-      </div>
+      <div className="absolute inset-y-0 left-[34%] w-[12%] bg-gradient-to-r from-transparent to-[#EFECE6]" aria-hidden />
+      <div className="absolute inset-y-0 left-[46%] right-0 bg-[#EFECE6]" aria-hidden />
 
-      <div className="relative z-[2] ml-[52%] pr-4 pt-10 pb-10">
+      <div className="relative z-[2] ml-[46%] pr-4 pt-10 pb-10">
         <Reveal>
-          <h2 className="text-[3.6rem] leading-[0.8] tracking-[-0.045em] font-[350] text-ink">
+          <p className="text-[0.58rem] tracking-[0.28em] uppercase text-ink/60 mb-4">Chapter I</p>
+          <h2 className="text-[4rem] leading-[0.8] tracking-[-0.045em] font-[350] text-ink">
             The
             <br />
             Man<span className="text-[#B22234]">.</span>
           </h2>
         </Reveal>
         <Reveal delay={0.06}>
-          <p className="mt-5 font-display text-[1.05rem] leading-tight text-ink">
+          <p className="mt-5 font-display text-[1.2rem] leading-tight text-ink">
             <span className="italic text-[#B22234]">{about.honorific}</span> {about.name}
           </p>
-          <p className="mt-1 text-[0.5rem] tracking-[0.22em] uppercase text-ink/60">{about.postNominals.join(' · ')}</p>
-          <p className="mt-3 font-display italic text-[0.8rem] leading-snug text-ink/85">{about.kicker}</p>
+          <p className="mt-1 text-[0.58rem] tracking-[0.22em] uppercase text-ink/65">{about.postNominals.join(' · ')}</p>
+          <p className="mt-3 font-display italic text-[0.92rem] leading-snug text-ink/90">{about.kicker}</p>
         </Reveal>
         <Reveal delay={0.1}>
-          <div className="mt-3 space-y-3 text-[0.72rem] leading-[1.6] text-ink/80">
+          <div className="mt-4 space-y-3.5 text-[0.82rem] leading-[1.62] text-ink/85">
             {about.paragraphs.map((p) => <p key={p}>{p}</p>)}
           </div>
         </Reveal>
         <Reveal delay={0.14}>
-          <p className="mt-5 font-signature text-[2.1rem] text-ink leading-none -rotate-3 origin-left">{about.signature}</p>
+          <p className="mt-6 font-signature text-[2.4rem] text-ink leading-none -rotate-3 origin-left">{about.signature}</p>
           <span className="mt-4 block h-px w-8 bg-ink/50" />
-          <Link to="/story" className="mt-3 inline-flex items-center gap-2 text-[0.72rem] text-ink">
+          <Link to="/story" className="mt-3 inline-flex items-center gap-2 text-[0.82rem] text-ink">
             Read his full story <span>→</span>
           </Link>
         </Reveal>
