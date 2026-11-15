@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Reveal } from '../components/Reveal'
+import { JourneySlider } from '../components/JourneySlider'
 import { FlagStripes } from '../components/FlagStripes'
-import { CohortBanner, CountUp, GalleryCard, ImpactCounter, YouTubeLite } from '../components/ui'
+import { CohortBanner, CountUp, ImpactCounter, YouTubeLite } from '../components/ui'
 import { about, achievements, credentials, heroMedia, photos } from '../lib/content'
-import { useGallery, useInitiatives, useSettings } from '../lib/data'
+import { useInitiatives, useSettings } from '../lib/data'
 import type { Initiative } from '../lib/types'
 
 const ease = [0.22, 1, 0.36, 1] as const
@@ -583,26 +584,6 @@ function ThePeople() {
   )
 }
 
-function VisitsStrip() {
-  const { data } = useGallery()
-  const items = (data ?? []).filter((g) => (g.category === 'visit' || g.category === 'meeting') && g.image_url).slice(0, 8)
-  if (!items.length) return null // appears as soon as real visit photos are published in admin › Gallery
-  return (
-    <section className="pb-28">
-      <div className="container-x flex items-end justify-between gap-6">
-        <p className="eyebrow">Visits and meetings</p>
-        <Link to="/impact" className="text-gold text-sm whitespace-nowrap">View gallery →</Link>
-      </div>
-      <div
-        className="mt-8 flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 [scrollbar-width:none]"
-        style={{ paddingInline: 'max(1.25rem, calc((100vw - 72rem) / 2 + 2rem))', scrollPaddingInline: 'max(1.25rem, calc((100vw - 72rem) / 2 + 2rem))' }}
-      >
-        {items.map((g) => <div key={g.id} className="snap-start shrink-0 w-[72vw] sm:w-[42vw] md:w-[22rem]"><GalleryCard g={g} /></div>)}
-      </div>
-    </section>
-  )
-}
-
 function LatestVideos() {
   const { videos } = useSettings()
   const ids = videos.youtube_ids.slice(0, 3)
@@ -647,10 +628,10 @@ export default function Home() {
       <CohortBanner />
       <TheMan />
       <HomeInterlude />
+      <JourneySlider />
       <Achievements />
       <TheWork />
       <ThePeople />
-      <VisitsStrip />
       <LatestVideos />
       <Join />
     </>

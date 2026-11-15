@@ -37,6 +37,8 @@ Tested against the live database: anonymous users can't read applicants/payments
 
 - **15 Nov — Previous site "Issues" page:** only character values (Transparency, Accountability, Service, Dignity → His Story "What he believes") and education convictions (→ AI School page "The conviction behind it", reframed for Nigeria) were reused. The US policy platform (economy, global leadership, "A Presidency Focused on Results", "running for President") is deliberately **not** on this site.
 
+- **15 Nov — "His Journey" slider (Home, after "His Heart For The People"):** full-bleed carousel of visits and meetings with a card queue, stepper and synchronized 600ms transitions (`src/components/JourneySlider.tsx`). It reads published Gallery items with category Visit/Meeting **and a photo**; until at least three exist it shows four placeholder slides (Obasanjo, Adeboye, Governors, Communities — names from the PRD). Captions must stay "visit"/"meeting" — never endorsement. It replaces the old "Visits and meetings" strip.
+
 ## Configuration
 
 **Vercel → Project → Settings → Environment Variables** (Production + Preview), then redeploy:
@@ -69,7 +71,7 @@ Build settings (auto-detected): Framework **Vite**, build `npm run build`, outpu
 - [ ] Achievements in numbers: fill at least three verified figures in `src/lib/content.ts` to make the section appear.
 - [ ] Real copy for everything marked `[PLACEHOLDER]` (search the repo and the admin): story in brief, career record, values, timeline, achievements in numbers, initiative bodies, hero subhead, AI School format and teachers, privacy policy controller details.
 - [ ] Logo (replace `Wordmark` in `src/components/Placeholder.tsx` and the icons in `public/icons/`).
-- [ ] Delete the 6 placeholder gallery items and upload real, captioned photos (place + date). Visits/meetings only — never "endorsed by".
+- [ ] Upload at least three real Visit/Meeting photos (title = person's name, e.g. "Obasanjo"; caption e.g. "Courtesy visit to former President Olusegun Obasanjo"; place + date) so His Journey switches from placeholders to real photos. Delete the 6 placeholder gallery items and upload real, captioned photos (place + date). Visits/meetings only — never "endorsed by".
 - [ ] Social links, WhatsApp number, student WhatsApp community link, YouTube links (admin › Settings).
 - [ ] Receiving entity name + CAC RC number (admin › Settings) once the entity and its Paystack account exist.
 - [ ] Hero video loop (< 3 MB MP4) if available (admin › Settings › Hero video URL).
