@@ -126,7 +126,7 @@ function MobileCredentials() {
           {String(i + 1).padStart(2, '0')}
           <span className="text-ivory/40">/{String(credentials.length).padStart(2, '0')}</span>
         </span>
-        <div className="relative h-[4.6rem] flex-1 overflow-hidden" aria-live="polite">
+        <div className="relative h-[5.2rem] flex-1 overflow-hidden" aria-live="polite">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={i}
@@ -137,7 +137,7 @@ function MobileCredentials() {
               className="absolute inset-0"
             >
               <p className="text-[0.6rem] tracking-[0.32em] uppercase text-ivory-2">{c.label}</p>
-              <p className="mt-1.5 font-display italic font-light text-ivory text-[1.8rem] leading-[1.05]">{c.line}</p>
+              <p className={`mt-1.5 font-display italic font-light text-ivory leading-[1.05] ${c.line.length > 30 ? 'text-[1.42rem]' : 'text-[1.8rem]'}`}>{c.line}</p>
             </motion.div>
           </AnimatePresence>
         </div>

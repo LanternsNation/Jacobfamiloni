@@ -25,6 +25,8 @@ export const credentials: { label: string; line: string }[] = [
   { label: 'Character', line: 'Hardworking & Dedicated' },
   { label: 'Faith', line: 'Good Christian' },
   { label: 'Family', line: 'Husband & Father of Four' },
+  // FEC candidate ID P60019361 ("FAMILONI, TAIWO JACOB", Independent, President). Owner decision, 15 Nov 2026.
+  { label: 'Political Career', line: 'Independent U.S. Presidential Candidate, 2016' },
 ]
 
 // Achievements in numbers — PLACEHOLDER values. Replace with verified figures.

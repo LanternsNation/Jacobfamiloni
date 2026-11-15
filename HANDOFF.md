@@ -26,6 +26,9 @@ Tested against the live database: anonymous users can't read applicants/payments
 
 - **15 Nov — Positioning and theme (owner decision):** Dr. Familoni is presented from the first screen as *a Nigerian based in the United States*. The site uses a USA colour theme (red accents, navy, white) with animated flag stripes behind the hero portrait. This replaces the PRD's gold accents. The guardrails still apply: no election, office, party or campaign wording; payments fund Nigerian initiatives only.
 
+- **15 Nov — Identity reel (owner decision):** the mobile hero reel and His Story "Who he is" show: Professional · Innovator & Entrepreneur; Character · Hardworking & Dedicated; Faith · Good Christian; Family · Husband & Father of Four; Political Career · Independent U.S. Presidential Candidate, 2016. Edit in `src/lib/content.ts` → `credentials`.
+- **15 Nov — 2016 candidacy shown (owner decision; overrides PRD guardrail 1):** source is the FEC candidate record P60019361 ("FAMILONI, TAIWO JACOB", Independent, President; the FEC shows no reported financial activity for 2015–2016). Keep the wording exactly as the FEC records it — "candidate", not "presidential nominee" or "ran for President" with vote claims. **Before launch, have the US election lawyer review this line together with the payment pages**: the reel sits on the same screen as "Sponsor a Seat", and payments come mostly from Nigerians (foreign nationals under US law). Keep all payment pages free of any political wording.
+
 ## Configuration
 
 **Vercel → Project → Settings → Environment Variables** (Production + Preview), then redeploy:
@@ -63,6 +66,7 @@ Build settings (auto-detected): Framework **Vite**, build `npm run build`, outpu
 - [ ] Receiving entity name + CAC RC number (admin › Settings) once the entity and its Paystack account exist.
 - [ ] Hero video loop (< 3 MB MP4) if available (admin › Settings › Hero video URL).
 - [ ] Domain (Wed 18 Nov) **before launch** — installed PWAs are tied to the address. Then update `SITE_URL`, `ALLOWED_ORIGINS`, Paystack callback/webhook stays the same.
+- [ ] **US election lawyer: review the "Political Career" line next to the payment flow (see Decisions log).**
 - [ ] Lawyer review of the privacy policy (Nigeria Data Protection Act 2023) and US election-lawyer review of the donation setup (PRD open items).
 
 ## Next 3 steps

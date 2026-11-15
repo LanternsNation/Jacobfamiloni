@@ -37,7 +37,7 @@ export default function Story() {
       <section className="grain bg-ink-2 py-24 md:py-32">
         <div className="container-x relative z-[2]">
           <SectionHeading eyebrow="What he stands for" title="Who he is" />
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {credentials.map((c, i) => (
               <Reveal key={c.line} delay={i * 0.06} className="border-t border-gold/30 pt-6">
                 <p className="font-display italic text-gold">{String(i + 1).padStart(2, '0')}</p>
