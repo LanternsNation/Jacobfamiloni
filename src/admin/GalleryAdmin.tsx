@@ -23,7 +23,7 @@ export default function GalleryAdmin() {
     <div className="space-y-6">
       <AdminCard title="Gallery and videos" actions={<button className={btn} onClick={() => setEditing({ ...EMPTY })}>Add item</button>}>
         <p className="text-sm text-muted mb-4">
-          Label prominent people only as a <strong>visit</strong> or <strong>meeting</strong>, never as an endorsement. Show widows and children with dignity, and only with consent.
+          Label prominent people only as a <strong>visit</strong> or <strong>meeting</strong>, never as an endorsement. In the title, give elders and leaders their title (e.g. <em>Baba Obasanjo</em>, <em>Papa Adeboye</em>, <em>His Excellency</em>), never the surname alone; the title becomes the headline in His Journey. Show widows and children with dignity, and only with consent.
         </p>
         <Msg text={rows.error} tone="error" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

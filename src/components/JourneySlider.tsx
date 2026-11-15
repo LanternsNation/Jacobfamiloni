@@ -27,9 +27,9 @@ interface Slide {
 // Shown until at least three real visit/meeting photos are published in admin › Gallery.
 // Names come from the PRD (footage exists); captions, places and dates are placeholders to confirm.
 const PLACEHOLDER_SLIDES: Slide[] = [
-  { id: 'p1', headline: 'Obasanjo', caption: 'Courtesy visit to former President Olusegun Obasanjo.', meta: '[PLACEHOLDER — place, date]', label: 'Visit', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#3b4a3a 0%,#18221b 55%,#0b0f1a 100%)' },
-  { id: 'p2', headline: 'Adeboye', caption: 'Visit with Pastor E. A. Adeboye.', meta: '[PLACEHOLDER — place, date]', label: 'Visit', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#4a3b2a 0%,#221a12 55%,#0b0f1a 100%)' },
-  { id: 'p3', headline: 'Governors', caption: 'Meetings with state governors across Nigeria.', meta: '[PLACEHOLDER — states, dates]', label: 'Meeting', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#2a3b5a 0%,#141d33 55%,#0b0f1a 100%)' },
+  { id: 'p1', headline: 'Baba Obasanjo', caption: 'Courtesy visit to His Excellency, Chief Olusegun Obasanjo, former President of Nigeria.', meta: '[PLACEHOLDER — place, date]', label: 'Courtesy visit', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#3b4a3a 0%,#18221b 55%,#0b0f1a 100%)' },
+  { id: 'p2', headline: 'Papa Adeboye', caption: 'Visit to Pastor E. A. Adeboye, General Overseer of the Redeemed Christian Church of God.', meta: '[PLACEHOLDER — place, date]', label: 'Visit', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#4a3b2a 0%,#221a12 55%,#0b0f1a 100%)' },
+  { id: 'p3', headline: 'Their Excellencies', caption: 'Meetings with state governors across Nigeria.', meta: '[PLACEHOLDER — states, dates]', label: 'Meeting', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#2a3b5a 0%,#141d33 55%,#0b0f1a 100%)' },
   { id: 'p4', headline: 'Communities', caption: 'Visits to communities, schools and families at home.', meta: '[PLACEHOLDER — places, dates]', label: 'Visit', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#5a2a33 0%,#2a121a 55%,#0b0f1a 100%)' },
 ]
 
@@ -175,7 +175,7 @@ export function JourneySlider() {
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.h2
               key={s.id + '-h'}
-              className="font-sans font-extrabold uppercase text-white text-[13vw] md:text-[68px] leading-[1.05] tracking-[0.02em] whitespace-nowrap"
+              className="font-sans font-extrabold uppercase text-white text-[12vw] md:text-[64px] leading-[1.02] tracking-[0.02em] max-w-[11ch] text-balance"
               initial={reduce ? false : { y: '100%', opacity: 0 }}
               animate={{ y: '0%', opacity: 1 }}
               exit={reduce ? undefined : { y: '-100%', opacity: 0 }}
