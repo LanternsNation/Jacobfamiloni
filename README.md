@@ -21,4 +21,10 @@ npm run dev
 - `supabase/migrations` — database schema and Row Level Security
 - `supabase/functions` — Edge Functions (Paystack checkout + webhook, form intake)
 
-See `HANDOFF.md` for status and next steps.
+## Deploy (Vercel)
+
+1. Vercel → Add New → Project → import `LanternsNation/Jacobfamiloni` (already connected). Framework: Vite. Build: `npm run build`. Output: `dist`.
+2. Environment variables: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` (publishable key).
+3. Every push to `main` deploys.
+
+Supabase Edge Function secrets, Paystack webhook and admin setup: see `HANDOFF.md`.

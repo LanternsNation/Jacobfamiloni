@@ -23,7 +23,12 @@ export default function InitiativeDetail() {
     <>
       <header className="grain relative min-h-[78svh] flex items-end overflow-hidden">
         <div className="absolute inset-0">
-          <MediaImage src={i.hero_image} alt="" label={`${i.title} — hero photo`} className="h-full w-full opacity-60" />
+          {i.hero_image ? (
+            <MediaImage src={i.hero_image} alt="" className="h-full w-full opacity-60" />
+          ) : (
+            // No hero photo yet (add one in admin › Initiatives): warm cinematic field instead of a placeholder box
+            <div className="h-full w-full bg-[radial-gradient(120%_80%_at_75%_15%,#2a2416_0%,#121828_50%,#0b0f1a_80%)]" />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/20" />
         </div>
         <div className="container-x relative z-[2] pb-14 md:pb-20 pt-32">
