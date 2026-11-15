@@ -18,9 +18,13 @@ No secrets are stored in this repo. Secret **names** are listed below; values li
 | Referrals | 7-character code per applicant; `?ref=CODE` on any page is remembered and attached on application; admin sees who referred whom and a top-referrers table. |
 | Admin `/admin` | Supabase Auth (email + password). Overview + sponsored-seat placement, applicants (search, filters, status, CSV), payments (CSV), sponsorships by initiative (CSV), Get Involved inbox, initiatives manager, gallery manager (uploads auto-converted to WebP), site settings, counter toggles, cohorts and dates, tracks. |
 | Photos | Hero: studio portrait (dark suit). Home: candid portrait in warm monochrome (chapter I) and the Nigeria photo as the full-bleed "Starting at home" interlude. His Story: archive portrait + lectern photo. |
-| Design | Home is told in four chapters (I The man, II The work, III The people, IV Join) with a letterbox hero reveal, slow push-in on the portrait, outlined marquee of initiative names. Sections with no real content (achievements, visits strip, videos) stay hidden until filled. Fonts self-hosted (Fraunces with optical sizing, Inter). |
+| Design | Hero is an editorial portrait poster: "JACOB" set huge behind a real cut-out B&W portrait, "Familoni" in italic in front, animated red-and-white flag stripes and navy star field behind, caption "A Nigerian based in the United States". Home is told in four chapters (I The man, II The work, III The people, IV Join) with a letterbox hero reveal, slow push-in on the portrait, outlined marquee of initiative names. Sections with no real content (achievements, visits strip, videos) stay hidden until filled. Fonts self-hosted (Fraunces with optical sizing, Inter). |
 
 Tested against the live database: anonymous users can't read applicants/payments; payment confirmation returns `ok` then `already_processed`; wrong amounts are rejected; application, referral and duplicate-email handling work through the deployed Edge Functions.
+
+## Decisions log
+
+- **15 Nov — Positioning and theme (owner decision):** Dr. Familoni is presented from the first screen as *a Nigerian based in the United States*. The site uses a USA colour theme (red accents, navy, white) with animated flag stripes behind the hero portrait. This replaces the PRD's gold accents. The guardrails still apply: no election, office, party or campaign wording; payments fund Nigerian initiatives only.
 
 ## Configuration
 

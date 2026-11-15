@@ -1,7 +1,7 @@
 import { useReducedMotion } from 'framer-motion'
 
 /**
- * PREVIEW (branch preview/usa-theme): animated red-and-white stripes with a navy star field,
+ * USA theme: animated red-and-white stripes with a navy star field,
  * used as a background texture behind the hero portrait. Thirteen stripes sweep in and out
  * in a staggered wave; pure CSS transforms, cheap on mid-range phones.
  */

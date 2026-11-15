@@ -15,7 +15,7 @@ export default defineConfig({
         id: '/',
         name: 'Dr. Jacob Familoni',
         short_name: 'Familoni',
-        description: 'The story, work and Nigerian initiatives of Dr. Jacob Familoni.',
+        description: 'Dr. Jacob Familoni: a Nigerian based in the United States, and the initiatives he is building at home.',
         start_url: '/?source=pwa',
         scope: '/',
         display: 'standalone',

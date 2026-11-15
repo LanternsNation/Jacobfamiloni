@@ -85,15 +85,16 @@ function Hero() {
       </motion.svg>
 
       {/* 4 · Caption block, top left */}
-      <motion.div className="absolute left-5 md:left-[max(2rem,calc((100vw-72rem)/2+2rem))] top-24 md:top-[18%] z-[5] max-w-[11rem]" {...fade(1.1, 0)}>
+      <motion.div className="absolute left-5 md:left-[max(2rem,calc((100vw-72rem)/2+2rem))] top-24 md:top-[18%] z-[5] max-w-[13rem]" {...fade(1.1, 0)}>
         <span className="block h-px w-6 bg-gold/80 rotate-[-40deg] origin-left mb-4" />
         <p className="text-[0.62rem] leading-[1.9] tracking-[0.32em] uppercase text-ivory-2">
-          A legacy
+          A Nigerian
           <br />
-          of excellence,
+          based in the
           <br />
-          starting at home
+          <span className="text-ivory">United States</span>
         </p>
+        <p className="hidden md:block mt-4 font-display italic text-gold text-sm">A legacy of excellence, starting at home.</p>
       </motion.div>
 
       {/* 5 · Surname in gold italic, IN FRONT of the figure */}
