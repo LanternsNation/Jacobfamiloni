@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Reveal } from '../components/Reveal'
 import { JourneySlider } from '../components/JourneySlider'
+import { SchoolCta } from '../components/SchoolCta'
 import { FlagStripes } from '../components/FlagStripes'
 import { CohortBanner, CountUp, ImpactCounter, YouTubeLite } from '../components/ui'
 import { about, achievements, credentials, heroMedia, photos } from '../lib/content'
@@ -629,6 +630,7 @@ export default function Home() {
       <TheMan />
       <HomeInterlude />
       <JourneySlider />
+      <SchoolCta />
       <Achievements />
       <TheWork />
       <ThePeople />

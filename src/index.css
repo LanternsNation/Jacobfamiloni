@@ -154,6 +154,8 @@
   @keyframes flagwave { 0%, 100% { transform: skewY(-1.2deg) translateY(0); } 50% { transform: skewY(1.2deg) translateY(-1%); } }
   .flag-canton { animation: cantonfade 7.5s ease-in-out infinite; }
   @keyframes cantonfade { 0%, 100% { opacity: 0.25; } 40%, 70% { opacity: 0.6; } }
+  .float-y { animation: floaty 3s ease-in-out infinite alternate; }
+  @keyframes floaty { from { transform: translateY(0); } to { transform: translateY(-6px); } }
   .cred-fill { width: 0; animation-name: credfill; animation-timing-function: linear; animation-fill-mode: forwards; }
   @keyframes credfill { to { width: 100%; } }
   .journey-pulse { animation: jpulse 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
