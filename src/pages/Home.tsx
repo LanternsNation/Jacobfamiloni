@@ -10,6 +10,79 @@ import type { Initiative } from '../lib/types'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
+/* -------------------------------------------------------------- HeroName
+ * Phones: "JACOB" types itself letter by letter, holds, erases, repeats (with a red caret).
+ * Desktop: letters close in from wide spacing once. Width never changes, so nothing jumps.
+ */
+const FIRST = 'JACOB'
+function useIsPhone() {
+  const [phone, setPhone] = useState(() => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)')
+    const on = () => setPhone(mq.matches)
+    mq.addEventListener('change', on)
+    return () => mq.removeEventListener('change', on)
+  }, [])
+  return phone
+}
+
+function HeroName() {
+  const reduce = useReducedMotion()
+  const phone = useIsPhone()
+  const typing = phone && !reduce
+  const [shown, setShown] = useState(typing ? 0 : FIRST.length)
+
+  useEffect(() => {
+    if (!typing) {
+      setShown(FIRST.length)
+      return
+    }
+    let n = 0
+    let dir: 1 | -1 = 1
+    let t = 0
+    const step = () => {
+      n += dir
+      setShown(n)
+      let wait = dir === 1 ? 230 : 110
+      if (dir === 1 && n === FIRST.length) {
+        dir = -1
+        wait = 2600 // hold the full name
+      } else if (dir === -1 && n === 0) {
+        dir = 1
+        wait = 650
+      }
+      t = window.setTimeout(step, wait)
+    }
+    t = window.setTimeout(step, 1100) // start after the letterbox opens
+    return () => window.clearTimeout(t)
+  }, [typing])
+
+  const letters = FIRST.split('')
+  const word = (
+    <span className="relative font-display font-light uppercase leading-none text-ivory/95 text-[35vw] md:text-[24vw] whitespace-nowrap">
+      {letters.map((ch, i) => (
+        <span key={i} className="relative inline-block" style={{ opacity: i < shown ? 1 : 0, transition: typing ? 'opacity 120ms linear' : undefined }}>
+          {ch}
+          {typing && i === shown - 1 && <span className="hero-caret absolute -right-[0.04em] top-[0.12em] bottom-[0.1em] w-[3px] bg-gold" />}
+        </span>
+      ))}
+      {typing && shown === 0 && <span className="hero-caret absolute left-[0.02em] top-[0.12em] bottom-[0.1em] w-[3px] bg-gold" />}
+    </span>
+  )
+
+  return (
+    <motion.div
+      aria-hidden
+      className="absolute inset-x-0 top-[23%] md:top-[30%] z-[1] flex justify-center pointer-events-none select-none"
+      initial={reduce || phone ? false : { opacity: 0, letterSpacing: '0.35em' }}
+      animate={reduce || phone ? undefined : { opacity: 1, letterSpacing: '0.04em' }}
+      transition={{ duration: 2.2, delay: 0.5, ease }}
+    >
+      {word}
+    </motion.div>
+  )
+}
+
 /* ---------------------------------------------------------------- Hero
  * Editorial portrait poster: name set huge BEHIND the figure, surname in gold italic IN FRONT,
  * a fine diagonal rule, small spaced captions. Real photo (cut out, black-and-white).
@@ -38,16 +111,8 @@ function Hero() {
         <video className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-luminosity" src={video} autoPlay muted loop playsInline preload="none" aria-hidden />
       )}
 
-      {/* 1 · First name, set huge, BEHIND the figure */}
-      <motion.div
-        aria-hidden
-        className="absolute inset-x-0 top-[23%] md:top-[30%] z-[1] flex justify-center pointer-events-none select-none"
-        initial={reduce ? false : { opacity: 0, letterSpacing: '0.35em' }}
-        animate={{ opacity: 1, letterSpacing: '0.04em' }}
-        transition={{ duration: 2.2, delay: 0.5, ease }}
-      >
-        <span className="font-display font-light uppercase leading-none text-ivory/95 text-[35vw] md:text-[24vw] whitespace-nowrap">Jacob</span>
-      </motion.div>
+      {/* 1 · First name, set huge, BEHIND the figure (types itself in a loop on phones) */}
+      <HeroName />
 
       {/* 2 · The figure */}
       <motion.img
@@ -57,13 +122,8 @@ function Hero() {
         alt="Dr. Jacob Familoni"
         fetchPriority="high"
         decoding="async"
-        className="absolute bottom-0 left-1/2 z-[2] h-[78svh] md:h-[86svh] w-auto max-w-none -translate-x-[50%] md:-translate-x-[38%] object-contain object-bottom"
-        style={{
-          aspectRatio: String(heroMedia.figureRatio),
-          // soften the original photo's straight left edge (sleeve) into the studio backdrop
-          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 22%, #000 100%)',
-          maskImage: 'linear-gradient(to right, transparent 0%, #000 22%, #000 100%)',
-        }}
+        className="absolute bottom-0 left-1/2 z-[2] h-[70svh] md:h-[86svh] w-auto max-w-none -translate-x-[50%] md:-translate-x-[38%] object-contain object-bottom"
+        style={{ aspectRatio: String(heroMedia.figureRatio) }}
         initial={reduce ? false : { opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.6, delay: 0.25, ease }}
@@ -85,8 +145,8 @@ function Hero() {
       </motion.svg>
 
       {/* 4 · Caption block, top left */}
-      <motion.div className="absolute left-5 md:left-[max(2rem,calc((100vw-72rem)/2+2rem))] top-24 md:top-[18%] z-[5] max-w-[13rem]" {...fade(1.1, 0)}>
-        <span className="block h-px w-6 bg-gold/80 rotate-[-40deg] origin-left mb-4" />
+      <motion.div className="absolute left-5 md:left-[max(2rem,calc((100vw-72rem)/2+2rem))] top-[4.6rem] md:top-[18%] z-[5] max-w-[13rem]" {...fade(1.1, 0)}>
+        <span className="hidden md:block h-px w-6 bg-gold/80 rotate-[-40deg] origin-left mb-4" />
         <p className="text-[0.62rem] leading-[1.9] tracking-[0.32em] uppercase text-ivory-2">
           A Nigerian
           <br />

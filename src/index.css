@@ -153,6 +153,8 @@
   @keyframes flagwave { 0%, 100% { transform: skewY(-1.2deg) translateY(0); } 50% { transform: skewY(1.2deg) translateY(-1%); } }
   .flag-canton { animation: cantonfade 7.5s ease-in-out infinite; }
   @keyframes cantonfade { 0%, 100% { opacity: 0.25; } 40%, 70% { opacity: 0.6; } }
+  .hero-caret { animation: caret 0.9s steps(1) infinite; }
+  @keyframes caret { 50% { opacity: 0; } }
   .marquee { display: flex; width: max-content; animation: marquee 48s linear infinite; }
   @keyframes marquee { to { transform: translateX(-50%); } }
   .kenburns { animation: kenburns 18s var(--ease-cine) both; transform-origin: 50% 30%; }
