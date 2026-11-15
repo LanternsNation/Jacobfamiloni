@@ -25,7 +25,7 @@ export default function Story() {
             </p>
           </Reveal>
           <Reveal>
-            <img src={photos.home.src} width={photos.home.w} height={photos.home.h} alt={photos.home.alt} loading="lazy" decoding="async" className="mb-8 aspect-[4/3] w-full object-cover object-[50%_20%]" />
+            <img src={photos.speaking.src} width={photos.speaking.w} height={photos.speaking.h} alt={photos.speaking.alt} loading="lazy" decoding="async" className="mb-8 aspect-[4/3] w-full object-cover object-[50%_25%]" />
             <p className="eyebrow">Why he is investing at home</p>
             <blockquote className="mt-5 border-l border-gold pl-6 font-display text-2xl md:text-3xl italic font-light leading-snug">
               &ldquo;[PLACEHOLDER — In his own words: why he is building in Nigeria now.]&rdquo;

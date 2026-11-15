@@ -99,7 +99,7 @@ export function Layout() {
 
 function Footer() {
   return (
-    <footer className="grain bg-ink-2 border-t border-white/5 mt-24">
+    <footer className="grain bg-ink border-t border-white/5">
       <div className="container-x py-16 grid gap-12 md:grid-cols-3 relative z-[2]">
         <div>
           <Wordmark className="text-2xl" />

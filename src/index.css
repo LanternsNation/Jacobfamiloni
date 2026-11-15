@@ -10,8 +10,8 @@
   --color-ivory-2: #e9e3d5;
   --color-muted: #a39d90;
 
-  --font-serif: "Fraunces", "Playfair Display", Georgia, serif;
-  --font-sans: "Inter", "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Fraunces Variable", "Fraunces", Georgia, serif;
+  --font-sans: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -31,7 +31,8 @@
   h1, h2, h3, .font-display {
     font-family: var(--font-serif);
     font-optical-sizing: auto;
-    letter-spacing: -0.02em;
+    font-weight: 330;
+    letter-spacing: -0.025em;
     line-height: 1.02;
   }
   ::selection {
@@ -124,9 +125,33 @@
     margin-bottom: 0.4rem;
   }
   .placeholder-box {
-    border: 1px dashed color-mix(in srgb, var(--color-gold) 55%, transparent);
-    background: repeating-linear-gradient(135deg, var(--color-ink-2) 0 12px, var(--color-ink-3) 12px 24px);
-    color: var(--color-gold-soft);
+    background: radial-gradient(120% 90% at 70% 20%, #1d1a14 0%, var(--color-ink-2) 60%);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-gold) 22%, transparent);
+    color: color-mix(in srgb, var(--color-gold-soft) 70%, transparent);
+  }
+  /* Elegant placeholder frame (replaces wireframe stripes) */
+  .placeholder-frame {
+    position: relative;
+    background: radial-gradient(120% 90% at 70% 20%, #1d1a14 0%, var(--color-ink-2) 55%, var(--color-ink) 100%);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-gold) 22%, transparent);
+  }
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--color-gold) 55%, transparent);
+  }
+  .marquee { display: flex; width: max-content; animation: marquee 48s linear infinite; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .kenburns { animation: kenburns 18s var(--ease-cine) both; transform-origin: 50% 30%; }
+  @keyframes kenburns { from { transform: scale(1.12); } to { transform: scale(1); } }
+  .scroll-cue { animation: scrollcue 2.4s var(--ease-cine) infinite; transform-origin: top; }
+  @keyframes scrollcue { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+  .chapter {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-gold);
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
   }
   .container-x {
     width: 100%;
@@ -135,6 +160,30 @@
     padding-inline: 1.25rem;
   }
   @media (min-width: 768px) {
-    .container-x { padding-inline: 2rem; }
+    /* Elegant placeholder frame (replaces wireframe stripes) */
+  .placeholder-frame {
+    position: relative;
+    background: radial-gradient(120% 90% at 70% 20%, #1d1a14 0%, var(--color-ink-2) 55%, var(--color-ink) 100%);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-gold) 22%, transparent);
+  }
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px color-mix(in srgb, var(--color-gold) 55%, transparent);
+  }
+  .marquee { display: flex; width: max-content; animation: marquee 48s linear infinite; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+  .kenburns { animation: kenburns 18s var(--ease-cine) both; transform-origin: 50% 30%; }
+  @keyframes kenburns { from { transform: scale(1.12); } to { transform: scale(1); } }
+  .scroll-cue { animation: scrollcue 2.4s var(--ease-cine) infinite; transform-origin: top; }
+  @keyframes scrollcue { 0% { transform: scaleY(0); opacity: 1; } 60% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
+  .chapter {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-gold);
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+  .container-x { padding-inline: 2rem; }
   }
 }

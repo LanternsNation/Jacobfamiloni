@@ -37,7 +37,7 @@ export default defineConfig({
       workbox: {
         // App shell + all route chunks are precached, so core pages open offline.
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
-        globIgnores: ['media/**'], // photos are cached on first view instead of downloaded at install (saves data)
+        globIgnores: ['media/**', '**/Admin-*.js', '**/*-{cyrillic,cyrillic-ext,greek,greek-ext,vietnamese,latin-ext}-*.woff2'], // photos are cached on first view instead of downloaded at install (saves data)
         navigateFallback: '/index.html',
         navigateFallbackDenylist: [/^\/admin/, /^\/functions\//],
         cleanupOutdatedCaches: true,

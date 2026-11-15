@@ -17,7 +17,8 @@ No secrets are stored in this repo. Secret **names** are listed below; values li
 | Counter | `public_impact()` returns counts only (applicants, states, seats sponsored, students placed, sponsors, per initiative). `public_sponsors()` returns opted-in names + country only. |
 | Referrals | 7-character code per applicant; `?ref=CODE` on any page is remembered and attached on application; admin sees who referred whom and a top-referrers table. |
 | Admin `/admin` | Supabase Auth (email + password). Overview + sponsored-seat placement, applicants (search, filters, status, CSV), payments (CSV), sponsorships by initiative (CSV), Get Involved inbox, initiatives manager, gallery manager (uploads auto-converted to WebP), site settings, counter toggles, cohorts and dates, tracks. |
-| Photos | Hero (Nigeria portrait), lectern photo on Home, archive portrait + Nigeria photo on His Story. |
+| Photos | Hero: studio portrait (dark suit). Home: candid portrait in warm monochrome (chapter I) and the Nigeria photo as the full-bleed "Starting at home" interlude. His Story: archive portrait + lectern photo. |
+| Design | Home is told in four chapters (I The man, II The work, III The people, IV Join) with a letterbox hero reveal, slow push-in on the portrait, outlined marquee of initiative names. Sections with no real content (achievements, visits strip, videos) stay hidden until filled. Fonts self-hosted (Fraunces with optical sizing, Inter). |
 
 Tested against the live database: anonymous users can't read applicants/payments; payment confirmation returns `ok` then `already_processed`; wrong amounts are rejected; application, referral and duplicate-email handling work through the deployed Edge Functions.
 
@@ -50,6 +51,7 @@ Build settings (auto-detected): Framework **Vite**, build `npm run build`, outpu
 
 - [ ] Add the three Edge Function secrets and the Paystack webhook URL (blocks all payments).
 - [ ] Create the admin user; then **turn off public sign-ups** (Authentication → Sign In / Providers → Email → disable "Allow new users to sign up").
+- [ ] Achievements in numbers: fill at least three verified figures in `src/lib/content.ts` to make the section appear.
 - [ ] Real copy for everything marked `[PLACEHOLDER]` (search the repo and the admin): story in brief, career record, values, timeline, achievements in numbers, initiative bodies, hero subhead, AI School format and teachers, privacy policy controller details.
 - [ ] Logo (replace `Wordmark` in `src/components/Placeholder.tsx` and the icons in `public/icons/`).
 - [ ] Delete the 6 placeholder gallery items and upload real, captioned photos (place + date). Visits/meetings only — never "endorsed by".
@@ -71,8 +73,9 @@ Build settings (auto-detected): Framework **Vite**, build `npm run build`, outpu
 - **Duplicate-email path:** someone who knows an applicant's email can resubmit and see that applicant's referral code (they can't see or change other details). Acceptable for launch; tighten with an email/WhatsApp one-time code later.
 - **Cohort capacity** is checked when payment starts, not locked; under a rush a cohort could overfill by a handful of seats.
 - **No outbound messages yet:** the platform doesn't send email/SMS/WhatsApp. Paystack emails payment receipts; cohort details and the WhatsApp link are shown on screen and must otherwise be sent by the team (bulk messaging is in the post-launch list).
-- **Performance:** first load ships ~130 KB gzipped JS (React + router) plus Framer Motion (~51 KB gzipped). Fine on 4G; could be trimmed with `LazyMotion`. Fonts load from Google Fonts — self-host before launch to save a connection.
+- **Performance:** first load ships ~130 KB gzipped JS (React + router) plus Framer Motion (~51 KB gzipped) and ~200 KB of fonts. Fine on 4G; could be trimmed with `LazyMotion`.
 - **Photos:** the lectern and sweater portraits are ~500 px wide; get higher-resolution originals. Keep US-flag photos off the home page and initiative pages.
+- **Candid portrait (Le Méridien):** cropped above his lapel pin, which is a Republican Party elephant pin, and toned so the hotel signage is not legible. Never publish the uncropped original anywhere on his channels.
 - **Excluded photo:** the "2003 Businessman of the Year" certificate is from the NRCC Business Advisory Council (a US party committee programme reported as a fundraising solicitation). Keep it off the site and out of any achievements list.
 - **Edge Function deploys:** functions were deployed from these exact files. Future changes: `supabase functions deploy <name>` (the webhook must keep `verify_jwt = false`, set in `supabase/config.toml`).
 - `pg_net` is enabled (used for testing functions from SQL); harmless, can stay.
