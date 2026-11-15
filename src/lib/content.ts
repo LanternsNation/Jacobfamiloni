@@ -19,6 +19,14 @@ export const site = {
   contactEmail: '', // PLACEHOLDER
 }
 
+// Who he is, in the team's words (shown as the reel in the mobile hero, and as values on His Story).
+export const credentials: { label: string; line: string }[] = [
+  { label: 'Professional', line: 'Innovator & Entrepreneur' },
+  { label: 'Character', line: 'Hardworking & Dedicated' },
+  { label: 'Faith', line: 'Good Christian' },
+  { label: 'Family', line: 'Husband & Father of Four' },
+]
+
 // Achievements in numbers — PLACEHOLDER values. Replace with verified figures.
 export const achievements: { value: string; label: string }[] = [
   { value: '[00]', label: '[PLACEHOLDER] Years of professional work' },
@@ -36,11 +44,6 @@ export const timeline: { year: string; title: string; body: string }[] = [
   { year: '[Year]', title: '[PLACEHOLDER] Investing at home', body: '[PLACEHOLDER — the decision to build initiatives in Nigeria.]' },
 ]
 
-export const values: { title: string; body: string }[] = [
-  { title: '[PLACEHOLDER] Value one', body: '[PLACEHOLDER — a value he lives by, in his words.]' },
-  { title: '[PLACEHOLDER] Value two', body: '[PLACEHOLDER]' },
-  { title: '[PLACEHOLDER] Value three', body: '[PLACEHOLDER]' },
-]
 
 // Social links — PLACEHOLDER. Fill in once confirmed (open item in PRD).
 // These are defaults; admins can override them in Site settings.

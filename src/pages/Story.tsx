@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Reveal'
 import { PageHeader, SectionHeading } from '../components/ui'
-import { photos, site, timeline, values } from '../lib/content'
+import { credentials, photos, site, timeline } from '../lib/content'
 
 export default function Story() {
   return (
@@ -36,12 +36,13 @@ export default function Story() {
 
       <section className="grain bg-ink-2 py-24 md:py-32">
         <div className="container-x relative z-[2]">
-          <SectionHeading eyebrow="What he stands for" title="Values" />
-          <div className="mt-14 grid md:grid-cols-3 gap-10">
-            {values.map((v, i) => (
-              <Reveal key={i} delay={i * 0.06} className="border-t border-gold/30 pt-6">
-                <h3 className="text-3xl">{v.title}</h3>
-                <p className="mt-4 text-ivory-2 leading-relaxed">{v.body}</p>
+          <SectionHeading eyebrow="What he stands for" title="Who he is" />
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {credentials.map((c, i) => (
+              <Reveal key={c.line} delay={i * 0.06} className="border-t border-gold/30 pt-6">
+                <p className="font-display italic text-gold">{String(i + 1).padStart(2, '0')}</p>
+                <p className="mt-4 text-[0.65rem] tracking-[0.3em] uppercase text-ivory-2">{c.label}</p>
+                <h3 className="mt-2 text-3xl leading-tight">{c.line}</h3>
               </Reveal>
             ))}
           </div>

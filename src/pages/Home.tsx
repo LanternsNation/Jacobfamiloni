@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { motion, useReducedMotion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Reveal } from '../components/Reveal'
 import { FlagStripes } from '../components/FlagStripes'
 import { CohortBanner, CountUp, GalleryCard, ImpactCounter, YouTubeLite } from '../components/ui'
-import { achievements, heroMedia, photos, site } from '../lib/content'
+import { achievements, credentials, heroMedia, photos, site } from '../lib/content'
 import { useGallery, useInitiatives, useSettings } from '../lib/data'
 import type { Initiative } from '../lib/types'
 
@@ -83,62 +83,69 @@ function HeroName() {
   )
 }
 
-/* ---------------------------------------------------------- MobileJourney
- * Phones only: fills the space between the caption and the name with his journey —
- * a dashed arc from Nigeria to the U.S., a light travelling there and back ("and home again").
+/* ------------------------------------------------------- MobileCredentials
+ * Phones only: a story-style reel in the space above the name. Four segment bars fill in turn;
+ * each line slides up with a small label. Copy supplied by the team (see content.ts → credentials).
  */
-function MobileJourney() {
+function MobileCredentials() {
   const reduce = useReducedMotion()
-  const path = 'M 18 62 C 110 -6, 250 -6, 342 62'
+  const [i, setI] = useState(0)
+  const DURATION = 3200
+  useEffect(() => {
+    if (reduce) return
+    const t = window.setTimeout(() => setI((n) => (n + 1) % credentials.length), i === 0 ? DURATION + 1400 : DURATION)
+    return () => window.clearTimeout(t)
+  }, [i, reduce])
+  const c = credentials[i]
+
   return (
     <motion.div
-      aria-hidden
-      className="md:hidden absolute inset-x-5 top-[9.1rem] z-[5] pointer-events-none"
+      className="md:hidden absolute inset-x-5 top-[10.4rem] z-[5]"
       initial={reduce ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1, delay: 1.4 }}
+      transition={{ duration: 0.9, delay: 1.3 }}
     >
-      <svg viewBox="0 0 360 82" className="w-full h-auto overflow-visible">
-        <defs>
-          <radialGradient id="jglow">
-            <stop offset="0%" stopColor="#fff" stopOpacity="1" />
-            <stop offset="40%" stopColor="#F5F1E8" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="#F5F1E8" stopOpacity="0" />
-          </radialGradient>
-        </defs>
-        {/* the route */}
-        <motion.path
-          d={path}
-          fill="none"
-          stroke="#F5F1E8"
-          strokeOpacity="0.45"
-          strokeWidth="1"
-          strokeDasharray="3 5"
-          initial={reduce ? false : { pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 1.6, delay: 1.5, ease }}
-        />
-        {/* end points */}
-        <circle cx="18" cy="62" r="4.5" fill="#12B76A" />
-        <circle cx="18" cy="62" r="8" fill="none" stroke="#12B76A" strokeOpacity="0.5" className={reduce ? '' : 'journey-pulse'} />
-        <circle cx="342" cy="62" r="4.5" fill="#E04A5C" />
-        {/* the traveller: out to the U.S., then home again */}
-        {!reduce && (
-          <g>
-            <circle r="7" fill="url(#jglow)">
-              <animateMotion dur="7s" begin="3s" repeatCount="indefinite" path={path} keyPoints="0;1;1;0;0" keyTimes="0;0.38;0.5;0.88;1" calcMode="linear" />
-            </circle>
-            <circle r="2" fill="#fff">
-              <animateMotion dur="7s" begin="3s" repeatCount="indefinite" path={path} keyPoints="0;1;1;0;0" keyTimes="0;0.38;0.5;0.88;1" calcMode="linear" />
-            </circle>
-          </g>
-        )}
-      </svg>
-      <div className="mt-1 flex items-start justify-between">
-        <span className="font-display italic text-[0.95rem] text-ivory">Nigeria</span>
-        <span className="font-display italic text-[0.8rem] text-gold self-end translate-y-1">and home again.</span>
-        <span className="font-display italic text-[0.95rem] text-ivory">U.S.</span>
+      {/* segment bars */}
+      <div className="flex gap-1.5" aria-hidden>
+        {credentials.map((_, k) => (
+          <div key={k} className="h-[2px] flex-1 overflow-hidden rounded-full bg-ivory/15">
+            <div
+              key={k === i ? `on-${i}` : `off-${k}`}
+              className={`h-full bg-gold ${k === i && !reduce ? 'cred-fill' : ''}`}
+              style={{
+                width: reduce ? (k === i ? '100%' : '0%') : k < i ? '100%' : k === i ? undefined : '0%',
+                animationDuration: `${i === 0 ? DURATION + 1400 : DURATION}ms`,
+              }}
+            />
+          </div>
+        ))}
       </div>
+
+      <div className="mt-4 flex items-start gap-4">
+        <span className="font-display italic text-gold text-sm tabular-nums pt-1 w-9 shrink-0">
+          {String(i + 1).padStart(2, '0')}
+          <span className="text-ivory/40">/{String(credentials.length).padStart(2, '0')}</span>
+        </span>
+        <div className="relative h-[4.6rem] flex-1 overflow-hidden" aria-live="polite">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={i}
+              initial={reduce ? false : { y: '105%', opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={reduce ? undefined : { y: '-60%', opacity: 0 }}
+              transition={{ duration: 0.65, ease }}
+              className="absolute inset-0"
+            >
+              <p className="text-[0.6rem] tracking-[0.32em] uppercase text-ivory-2">{c.label}</p>
+              <p className="mt-1.5 font-display italic font-light text-ivory text-[1.8rem] leading-[1.05]">{c.line}</p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
+      {/* full list for screen readers */}
+      <ul className="sr-only">
+        {credentials.map((x) => <li key={x.line}>{x.label}: {x.line}</li>)}
+      </ul>
     </motion.div>
   )
 }
@@ -217,8 +224,8 @@ function Hero() {
         <p className="hidden md:block mt-4 font-display italic text-gold text-sm">A legacy of excellence, starting at home.</p>
       </motion.div>
 
-      {/* Phones: Nigeria ⇄ U.S. journey arc fills the space above the name */}
-      <MobileJourney />
+      {/* Phones: credential reel fills the space above the name */}
+      <MobileCredentials />
 
       {/* 5 · Surname in gold italic, IN FRONT of the figure */}
       <div className="absolute inset-x-0 bottom-0 z-[5]">
