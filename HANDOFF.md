@@ -71,6 +71,7 @@ Build settings (auto-detected): Framework **Vite**, build `npm run build`, outpu
 - [ ] Achievements in numbers: fill at least three verified figures in `src/lib/content.ts` to make the section appear.
 - [ ] Real copy for everything marked `[PLACEHOLDER]` (search the repo and the admin): story in brief, career record, values, timeline, achievements in numbers, initiative bodies, hero subhead, AI School format and teachers, privacy policy controller details.
 - [ ] Logo (replace `Wordmark` in `src/components/Placeholder.tsx` and the icons in `public/icons/`).
+- [ ] **Before launch: replace the TEMPORARY press portraits** in His Journey (`public/media/journey-obasanjo.webp`, `journey-adeboye.webp`; third-party photos, not ours) with photos of Dr. Familoni **with** each person. The section background video is hotlinked from the owner's Cloudinary (`JOURNEY_VIDEO` in `JourneySlider.tsx`).
 - [ ] Upload at least three real Visit/Meeting photos (title = person's name, e.g. "Obasanjo"; caption e.g. "Courtesy visit to former President Olusegun Obasanjo"; place + date) so His Journey switches from placeholders to real photos. Delete the 6 placeholder gallery items and upload real, captioned photos (place + date). Visits/meetings only — never "endorsed by".
 - [ ] Social links, WhatsApp number, student WhatsApp community link, YouTube links (admin › Settings).
 - [ ] Receiving entity name + CAC RC number (admin › Settings) once the entity and its Paystack account exist.

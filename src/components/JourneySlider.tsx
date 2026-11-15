@@ -21,14 +21,19 @@ interface Slide {
   meta: string
   label: string
   image: string | null
+  focus?: string // object-position for the photo
   tone: string // fallback backdrop while no photo exists
 }
+
+// Ambient background video for the whole section (owner's Cloudinary asset).
+const JOURNEY_VIDEO = 'https://res.cloudinary.com/rtytrsot/video/upload/v1794744888/ad5a40c3e4577fe35387844a1c1e65b4_720w_b6yzme.mp4'
 
 // Shown until at least three real visit/meeting photos are published in admin › Gallery.
 // Names come from the PRD (footage exists); captions, places and dates are placeholders to confirm.
 const PLACEHOLDER_SLIDES: Slide[] = [
-  { id: 'p1', headline: 'Baba Obasanjo', caption: 'Courtesy visit to His Excellency, Chief Olusegun Obasanjo, former President of Nigeria.', meta: '[PLACEHOLDER — place, date]', label: 'Courtesy visit', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#3b4a3a 0%,#18221b 55%,#0b0f1a 100%)' },
-  { id: 'p2', headline: 'Papa Adeboye', caption: 'Visit to Pastor E. A. Adeboye, General Overseer of the Redeemed Christian Church of God.', meta: '[PLACEHOLDER — place, date]', label: 'Visit', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#4a3b2a 0%,#221a12 55%,#0b0f1a 100%)' },
+  // TEMPORARY press portraits (not ours) — replace with photos of Dr. Familoni WITH each person before launch.
+  { id: 'p1', headline: 'Baba Obasanjo', caption: 'Courtesy visit to His Excellency, Chief Olusegun Obasanjo, former President of Nigeria.', meta: '[PLACEHOLDER — place, date]', label: 'Courtesy visit', image: '/media/journey-obasanjo.webp', focus: '62% 28%', tone: 'radial-gradient(80% 70% at 70% 30%,#3b4a3a 0%,#18221b 55%,#0b0f1a 100%)' },
+  { id: 'p2', headline: 'Papa Adeboye', caption: 'Visit to Pastor E. A. Adeboye, General Overseer of the Redeemed Christian Church of God.', meta: '[PLACEHOLDER — place, date]', label: 'Visit', image: '/media/journey-adeboye.webp', focus: '72% 30%', tone: 'radial-gradient(80% 70% at 70% 30%,#4a3b2a 0%,#221a12 55%,#0b0f1a 100%)' },
   { id: 'p3', headline: 'Their Excellencies', caption: 'Meetings with state governors across Nigeria.', meta: '[PLACEHOLDER — states, dates]', label: 'Meeting', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#2a3b5a 0%,#141d33 55%,#0b0f1a 100%)' },
   { id: 'p4', headline: 'Communities', caption: 'Visits to communities, schools and families at home.', meta: '[PLACEHOLDER — places, dates]', label: 'Visit', image: null, tone: 'radial-gradient(80% 70% at 70% 30%,#5a2a33 0%,#2a121a 55%,#0b0f1a 100%)' },
 ]
@@ -64,8 +69,15 @@ export function JourneySlider() {
         image: g.image_url,
         tone: '#0b0f1a',
       }))
-    return real.length >= 3 ? real : PLACEHOLDER_SLIDES
+    return real.length >= 3 ? (real as Slide[]) : PLACEHOLDER_SLIDES
   }, [data])
+
+  const [allowVideo, setAllowVideo] = useState(false)
+  useEffect(() => {
+    const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+    const slow = c?.saveData || (c?.effectiveType && /(^|-)2g|3g/.test(c.effectiveType))
+    setAllowVideo(!slow && !reduce)
+  }, [reduce])
 
   const N = slides.length
   const [step, setStep] = useState(0) // grows without bound; active = step mod N
@@ -118,7 +130,21 @@ export function JourneySlider() {
       aria-roledescription="carousel"
       aria-label="His journey: visits and meetings"
     >
-      {/* full-bleed backgrounds (cross-dissolve) */}
+      {/* ambient video base (skipped on data-saver / slow connections / reduced motion) */}
+      {allowVideo && (
+        <video
+          className="absolute inset-0 h-full w-full object-cover opacity-60"
+          src={JOURNEY_VIDEO}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-hidden
+        />
+      )}
+
+      {/* per-slide backdrop: photo (fading into the video toward the right) or a tone (cross-dissolve) */}
       {slides.map((sl, i) => (
         <motion.div
           key={sl.id}
@@ -126,14 +152,27 @@ export function JourneySlider() {
           initial={false}
           animate={{ opacity: i === active ? 1 : 0, scale: i === active ? 1 : 1.03 }}
           transition={{ duration: reduce ? 0 : 0.5, delay: reduce ? 0 : i === active ? 0.1 : 0.2, ease: EASE }}
-          style={{ zIndex: i === active ? 1 : 0, background: sl.image ? undefined : sl.tone }}
+          style={{
+            zIndex: i === active ? 1 : 0,
+            background: sl.image ? undefined : allowVideo ? undefined : sl.tone,
+          }}
           aria-hidden
         >
-          {sl.image && <img src={sl.image} alt="" className="h-full w-full object-cover" loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />}
+          {sl.image && (
+            <div
+              className="absolute inset-y-0 left-0 w-full md:w-[62%]"
+              style={{
+                WebkitMaskImage: 'linear-gradient(90deg,#000 0%,#000 62%,transparent 100%)',
+                maskImage: 'linear-gradient(90deg,#000 0%,#000 62%,transparent 100%)',
+              }}
+            >
+              <img src={sl.image} alt="" className="h-full w-full object-cover" style={{ objectPosition: sl.focus ?? '50% 40%' }} loading={i === 0 ? 'eager' : 'lazy'} decoding="async" />
+            </div>
+          )}
         </motion.div>
       ))}
       {/* vignette */}
-      <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(10,18,28,0.72)_0%,rgba(10,18,28,0.3)_55%,rgba(10,18,28,0.5)_100%)]" aria-hidden />
+      <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(10,18,28,0.82)_0%,rgba(10,18,28,0.55)_30%,rgba(10,18,28,0.25)_55%,rgba(10,18,28,0.5)_100%)]" aria-hidden />
       <div className="absolute inset-x-0 top-0 z-[2] h-40 bg-gradient-to-b from-ink to-transparent" aria-hidden />
       <div className="absolute inset-x-0 bottom-0 z-[2] h-48 bg-gradient-to-t from-ink to-transparent" aria-hidden />
 
@@ -246,7 +285,7 @@ export function JourneySlider() {
                 style={{ background: sl.image ? '#111' : sl.tone }}
               >
                 {sl.image ? (
-                  <img src={sl.image} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+                  <img src={sl.image} alt="" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: sl.focus ?? '50% 30%' }} loading="lazy" decoding="async" />
                 ) : (
                   <div className="absolute inset-0 grid place-items-center">
                     <span className="font-display italic text-white/25 text-4xl">JF</span>
