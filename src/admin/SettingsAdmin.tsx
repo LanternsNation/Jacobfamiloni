@@ -46,7 +46,7 @@ export default function SettingsAdmin() {
           <label className="text-sm md:col-span-2"><span className="label">Hero line under headline</span><input className={inputCls} value={s.hero.subhead} onChange={(e) => upd('hero', { subhead: e.target.value })} /></label>
           <label className="text-sm"><span className="label">Hero video URL (MP4, under 3 MB, muted loop)</span><input className={inputCls} value={s.hero.video_url} onChange={(e) => upd('hero', { video_url: e.target.value })} /></label>
           <label className="text-sm"><span className="label">Hero poster image URL (leave empty to use the built-in photo)</span><input className={inputCls} value={s.hero.poster_url} onChange={(e) => upd('hero', { poster_url: e.target.value })} /></label>
-          <label className="flex items-center gap-2 text-sm"><input type="checkbox" className="h-4 w-4 accent-[#C9A24A]" checked={s.cohort_banner.show} onChange={(e) => upd('cohort_banner', { show: e.target.checked })} /> Show cohort banner</label>
+          <label className="flex items-center gap-2 text-sm"><input type="checkbox" className="h-4 w-4 accent-[#E04A5C]" checked={s.cohort_banner.show} onChange={(e) => upd('cohort_banner', { show: e.target.checked })} /> Show cohort banner</label>
           <label className="text-sm"><span className="label">Cohort banner text</span><input className={inputCls} value={s.cohort_banner.text} onChange={(e) => upd('cohort_banner', { text: e.target.value })} /></label>
         </div>
       </AdminCard>
@@ -60,7 +60,7 @@ export default function SettingsAdmin() {
             ['show_students_placed', 'Students placed'],
             ['show_states', 'States represented'],
           ] as const).map(([k, l]) => (
-            <label key={k} className="flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-[#C9A24A]" checked={s.counters[k]} onChange={(e) => upd('counters', { [k]: e.target.checked })} /> {l}</label>
+            <label key={k} className="flex items-center gap-2"><input type="checkbox" className="h-4 w-4 accent-[#E04A5C]" checked={s.counters[k]} onChange={(e) => upd('counters', { [k]: e.target.checked })} /> {l}</label>
           ))}
         </div>
       </AdminCard>
@@ -139,7 +139,7 @@ function CohortsAdmin() {
             <label className="text-sm"><span className="label">Name</span><input className={inputCls} defaultValue={c.name} onBlur={(e) => e.target.value !== c.name && update(c, { name: e.target.value })} /></label>
             <label className="text-sm"><span className="label">Start date</span><input type="date" className={inputCls} defaultValue={c.starts_on ?? ''} onBlur={(e) => update(c, { starts_on: e.target.value || null })} /></label>
             <label className="text-sm"><span className="label">Capacity</span><input type="number" min={1} className={inputCls} defaultValue={c.capacity} onBlur={(e) => Number(e.target.value) !== c.capacity && update(c, { capacity: Number(e.target.value) })} /></label>
-            <label className="flex items-center gap-2 text-sm pb-2"><input type="checkbox" className="h-4 w-4 accent-[#C9A24A]" checked={c.is_open} onChange={(e) => update(c, { is_open: e.target.checked })} /> Open for applications</label>
+            <label className="flex items-center gap-2 text-sm pb-2"><input type="checkbox" className="h-4 w-4 accent-[#E04A5C]" checked={c.is_open} onChange={(e) => update(c, { is_open: e.target.checked })} /> Open for applications</label>
           </div>
         ))}
       </div>
@@ -166,7 +166,7 @@ function TracksAdmin() {
           <div key={t.id} className="grid md:grid-cols-[1fr_2fr_auto] gap-3 items-end rounded-lg border border-white/10 p-3">
             <label className="text-sm"><span className="label">Title</span><input className={inputCls} defaultValue={t.title} onBlur={(e) => e.target.value !== t.title && update(t, { title: e.target.value })} /></label>
             <label className="text-sm"><span className="label">Summary</span><input className={inputCls} defaultValue={t.summary} onBlur={(e) => e.target.value !== t.summary && update(t, { summary: e.target.value })} /></label>
-            <label className="flex items-center gap-2 text-sm pb-2"><input type="checkbox" className="h-4 w-4 accent-[#C9A24A]" checked={t.is_active} onChange={(e) => update(t, { is_active: e.target.checked })} /> Active</label>
+            <label className="flex items-center gap-2 text-sm pb-2"><input type="checkbox" className="h-4 w-4 accent-[#E04A5C]" checked={t.is_active} onChange={(e) => update(t, { is_active: e.target.checked })} /> Active</label>
           </div>
         ))}
       </div>

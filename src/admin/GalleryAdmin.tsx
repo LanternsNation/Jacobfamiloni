@@ -124,7 +124,7 @@ function Editor({ item, initiatives, onClose, onSaved }: {
         <div className="grid grid-cols-2 gap-3 items-end">
           <label className="text-sm"><span className="label">Order</span><input type="number" className={inputCls} value={v.sort_order} onChange={set('sort_order')} /></label>
           <label className="flex items-center gap-2 text-sm pb-2">
-            <input type="checkbox" className="h-4 w-4 accent-[#C9A24A]" checked={v.is_published} onChange={(e) => setV({ ...v, is_published: e.target.checked })} />
+            <input type="checkbox" className="h-4 w-4 accent-[#E04A5C]" checked={v.is_published} onChange={(e) => setV({ ...v, is_published: e.target.checked })} />
             Published
           </label>
         </div>

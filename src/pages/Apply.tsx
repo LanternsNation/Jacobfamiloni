@@ -166,7 +166,7 @@ export default function Apply() {
             <label className="flex items-start gap-3 text-sm text-ivory-2">
               <input
                 type="checkbox"
-                className="mt-1 h-5 w-5 accent-[#C9A24A]"
+                className="mt-1 h-5 w-5 accent-[#E04A5C]"
                 checked={form.consent}
                 onChange={(e) => setForm((f) => ({ ...f, consent: e.target.checked }))}
               />

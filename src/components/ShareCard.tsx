@@ -22,11 +22,11 @@ async function drawCard(headline: string, sub: string): Promise<Blob | null> {
   ctx.fillStyle = g
   ctx.fillRect(0, 0, W, H)
 
-  ctx.strokeStyle = 'rgba(201,162,74,0.55)'
+  ctx.strokeStyle = 'rgba(178,34,52,0.55)'
   ctx.lineWidth = 2
   ctx.strokeRect(60, 60, W - 120, H - 120)
 
-  ctx.fillStyle = '#C9A24A'
+  ctx.fillStyle = '#E04A5C'
   ctx.font = '500 28px Inter, system-ui, sans-serif'
   ctx.letterSpacing = '8px'
   ctx.fillText('DR. JACOB FAMILONI', 120, 180)
@@ -36,7 +36,7 @@ async function drawCard(headline: string, sub: string): Promise<Blob | null> {
   ctx.font = '400 92px Fraunces, Georgia, serif'
   wrap(ctx, headline, 120, 420, W - 240, 104)
 
-  ctx.fillStyle = '#C9A24A'
+  ctx.fillStyle = '#E04A5C'
   ctx.fillRect(120, H - 330, 120, 3)
   ctx.fillStyle = '#E9E3D5'
   ctx.font = '400 36px Inter, system-ui, sans-serif'

@@ -4,8 +4,11 @@
   --color-ink: #0b0f1a;
   --color-ink-2: #121828;
   --color-ink-3: #1b2236;
-  --color-gold: #c9a24a;
-  --color-gold-soft: #e0c68a;
+  /* PREVIEW usa-theme: red accents (text-safe on ink), navy available */
+  --color-gold: #e04a5c;
+  --color-gold-soft: #f07a88;
+  --color-navy: #3c3b6e;
+  --color-flag-red: #b22234;
   --color-ivory: #f5f1e8;
   --color-ivory-2: #e9e3d5;
   --color-muted: #a39d90;
@@ -84,14 +87,14 @@
     gap: 0.5rem;
     min-height: 3rem;
     padding: 0 1.6rem;
-    background: var(--color-gold);
-    color: var(--color-ink);
+    background: var(--color-flag-red);
+    color: #fff;
     font-weight: 600;
     letter-spacing: 0.02em;
     border-radius: 999px;
     transition: background 0.3s var(--ease-cine), transform 0.3s var(--ease-cine);
   }
-  .btn-gold:hover { background: var(--color-gold-soft); }
+  .btn-gold:hover { background: #c8303f; }
   .btn-gold:active { transform: scale(0.98); }
   .btn-gold:disabled { opacity: 0.5; cursor: not-allowed; }
   .btn-ghost {
@@ -139,6 +142,17 @@
     color: transparent;
     -webkit-text-stroke: 1px color-mix(in srgb, var(--color-gold) 55%, transparent);
   }
+  .flag-stripe { transform: translateX(-101%); animation: flagsweep 7.5s var(--ease-cine) infinite; }
+  @keyframes flagsweep {
+    0% { transform: translateX(-101%); }
+    32% { transform: translateX(0); }
+    68% { transform: translateX(0); }
+    100% { transform: translateX(101%); }
+  }
+  .flag-wave { animation: flagwave 6s ease-in-out infinite; transform-origin: 0 50%; }
+  @keyframes flagwave { 0%, 100% { transform: skewY(-1.2deg) translateY(0); } 50% { transform: skewY(1.2deg) translateY(-1%); } }
+  .flag-canton { animation: cantonfade 7.5s ease-in-out infinite; }
+  @keyframes cantonfade { 0%, 100% { opacity: 0.25; } 40%, 70% { opacity: 0.6; } }
   .marquee { display: flex; width: max-content; animation: marquee 48s linear infinite; }
   @keyframes marquee { to { transform: translateX(-50%); } }
   .kenburns { animation: kenburns 18s var(--ease-cine) both; transform-origin: 50% 30%; }
@@ -170,6 +184,17 @@
     color: transparent;
     -webkit-text-stroke: 1px color-mix(in srgb, var(--color-gold) 55%, transparent);
   }
+  .flag-stripe { transform: translateX(-101%); animation: flagsweep 7.5s var(--ease-cine) infinite; }
+  @keyframes flagsweep {
+    0% { transform: translateX(-101%); }
+    32% { transform: translateX(0); }
+    68% { transform: translateX(0); }
+    100% { transform: translateX(101%); }
+  }
+  .flag-wave { animation: flagwave 6s ease-in-out infinite; transform-origin: 0 50%; }
+  @keyframes flagwave { 0%, 100% { transform: skewY(-1.2deg) translateY(0); } 50% { transform: skewY(1.2deg) translateY(-1%); } }
+  .flag-canton { animation: cantonfade 7.5s ease-in-out infinite; }
+  @keyframes cantonfade { 0%, 100% { opacity: 0.25; } 40%, 70% { opacity: 0.6; } }
   .marquee { display: flex; width: max-content; animation: marquee 48s linear infinite; }
   @keyframes marquee { to { transform: translateX(-50%); } }
   .kenburns { animation: kenburns 18s var(--ease-cine) both; transform-origin: 50% 30%; }

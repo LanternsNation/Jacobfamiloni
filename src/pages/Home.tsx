@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Reveal } from '../components/Reveal'
+import { FlagStripes } from '../components/FlagStripes'
 import { CohortBanner, CountUp, GalleryCard, ImpactCounter, YouTubeLite } from '../components/ui'
 import { achievements, heroMedia, photos, site } from '../lib/content'
 import { useGallery, useInitiatives, useSettings } from '../lib/data'
@@ -32,6 +33,7 @@ function Hero() {
     <section className="grain relative h-[100svh] min-h-[640px] overflow-hidden bg-ink">
       {/* Studio backdrop: soft key light from upper right */}
       <div className="absolute inset-0 bg-[radial-gradient(70%_55%_at_62%_32%,#2b2c31_0%,#17181d_45%,#0b0f1a_85%)]" />
+      <FlagStripes />
       {allowVideo && (
         <video className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-luminosity" src={video} autoPlay muted loop playsInline preload="none" aria-hidden />
       )}
@@ -79,7 +81,7 @@ function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, delay: 1.4 }}
       >
-        <line x1="4" y1="96" x2="98" y2="14" stroke="#C9A24A" strokeOpacity="0.55" strokeWidth="0.12" vectorEffect="non-scaling-stroke" />
+        <line x1="4" y1="96" x2="98" y2="14" stroke="#F5F1E8" strokeOpacity="0.4" strokeWidth="0.12" vectorEffect="non-scaling-stroke" />
       </motion.svg>
 
       {/* 4 · Caption block, top left */}
@@ -327,7 +329,7 @@ function LatestVideos() {
 function Join() {
   return (
     <section className="grain relative overflow-hidden bg-ink-2">
-      <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(201,162,74,0.14),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(178,34,52,0.14),transparent_70%)]" />
       <div className="container-x relative z-[2] py-28 md:py-44 text-center">
         <Reveal>
           <div className="flex justify-center"><span className="chapter">IV</span></div>
