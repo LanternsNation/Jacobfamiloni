@@ -24,7 +24,7 @@ export const achievements: { value: string; label: string }[] = [
   { value: '[00]', label: '[PLACEHOLDER] Years of professional work' },
   { value: '[00]', label: '[PLACEHOLDER] Businesses built or led' },
   { value: '[00]', label: '[PLACEHOLDER] Communities visited in Nigeria' },
-  { value: '5', label: 'Initiatives at home' },
+  { value: '4', label: 'Initiatives at home' },
 ]
 
 // His Story timeline — PLACEHOLDER milestones only.
