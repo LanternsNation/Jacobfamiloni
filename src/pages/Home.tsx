@@ -288,52 +288,54 @@ function TheMan() {
   )
 }
 
-/** Phones: poster layout like a magazine "About Me" page — portrait left (full section height), copy column right. */
+/** Phones: centred heading, then the portrait in a vertical frame side by side with the copy.
+ * The frame stretches to the exact height of the text column. */
 function TheManMobile() {
   return (
     <section className="md:hidden relative overflow-hidden bg-[#EFECE6] text-ink">
-      {/* portrait: fills the section height, bleeds off the left edge */}
-      <img
-        src={photos.about.src}
-        srcSet={photos.about.srcSet}
-        sizes="60vw"
-        alt={photos.about.alt}
-        loading="lazy"
-        decoding="async"
-        className="absolute -left-[3%] bottom-0 h-[82%] w-[52%] object-cover object-[50%_0%]"
-      />
-      {/* soft ivory edge so the copy column reads cleanly */}
-      <div className="absolute inset-y-0 left-[34%] w-[12%] bg-gradient-to-r from-transparent to-[#EFECE6]" aria-hidden />
-      <div className="absolute inset-y-0 left-[46%] right-0 bg-[#EFECE6]" aria-hidden />
-
-      <div className="relative z-[2] ml-[46%] pr-4 pt-10 pb-10">
-        <Reveal>
-          <p className="text-[0.58rem] tracking-[0.28em] uppercase text-ink/60 mb-4">Chapter I</p>
-          <h2 className="text-[4rem] leading-[0.8] tracking-[-0.045em] font-[350] text-ink">
-            The
-            <br />
-            Man<span className="text-[#B22234]">.</span>
+      <div className="px-5 pt-12 pb-12">
+        {/* heading block, centred over everything */}
+        <Reveal className="text-center">
+          <p className="text-[0.6rem] tracking-[0.3em] uppercase text-ink/60">Chapter I</p>
+          <h2 className="mt-3 text-[3.4rem] leading-[0.85] tracking-[-0.04em] font-[350] text-ink">
+            The Man<span className="text-[#B22234]">.</span>
           </h2>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <p className="mt-5 font-display text-[1.2rem] leading-tight text-ink">
+          <p className="mt-4 font-display text-[1.15rem] leading-tight text-ink">
             <span className="italic text-[#B22234]">{about.honorific}</span> {about.name}
           </p>
-          <p className="mt-1 text-[0.58rem] tracking-[0.22em] uppercase text-ink/65">{about.postNominals.join(' · ')}</p>
-          <p className="mt-3 font-display italic text-[0.92rem] leading-snug text-ink/90">{about.kicker}</p>
+          <p className="mt-1.5 text-[0.56rem] tracking-[0.24em] uppercase text-ink/65">{about.postNominals.join(' · ')}</p>
+          <p className="mt-3 font-display italic text-[0.9rem] leading-snug text-ink/90">{about.kicker}</p>
+          <span className="mt-5 mb-7 mx-auto block h-px w-10 bg-ink/40" />
         </Reveal>
-        <Reveal delay={0.1}>
-          <div className="mt-4 space-y-3.5 text-[0.82rem] leading-[1.62] text-ink/85">
-            {about.paragraphs.map((p) => <p key={p}>{p}</p>)}
-          </div>
-        </Reveal>
-        <Reveal delay={0.14}>
-          <p className="mt-6 font-signature text-[2.4rem] text-ink leading-none -rotate-3 origin-left">{about.signature}</p>
-          <span className="mt-4 block h-px w-8 bg-ink/50" />
-          <Link to="/story" className="mt-3 inline-flex items-center gap-2 text-[0.82rem] text-ink">
-            Read his full story <span>→</span>
-          </Link>
-        </Reveal>
+
+        {/* portrait frame + copy, side by side; the frame stretches to the text's height */}
+        <div className="flex items-stretch gap-4">
+          <Reveal className="w-[42%] shrink-0">
+            <div className="relative h-full min-h-[16rem] border border-ink/25 bg-[#E5E1D8] p-1.5">
+              <div className="relative h-full w-full overflow-hidden">
+                <img
+                  src={photos.about.src}
+                  srcSet={photos.about.srcSet}
+                  sizes="40vw"
+                  alt={photos.about.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover object-top"
+                />
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.08} className="flex-1 min-w-0">
+            <div className="space-y-3.5 text-[0.82rem] leading-[1.62] text-ink/85">
+              {about.paragraphs.map((p) => <p key={p}>{p}</p>)}
+            </div>
+            <p className="mt-6 font-signature text-[2.2rem] text-ink leading-none -rotate-3 origin-left">{about.signature}</p>
+            <span className="mt-4 block h-px w-8 bg-ink/50" />
+            <Link to="/story" className="mt-3 inline-flex items-center gap-2 text-[0.82rem] text-ink">
+              Read his full story <span>→</span>
+            </Link>
+          </Reveal>
+        </div>
       </div>
     </section>
   )
