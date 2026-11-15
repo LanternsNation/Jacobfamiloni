@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Reveal'
 import { PageHeader, SectionHeading } from '../components/ui'
-import { credentials, photos, site, timeline } from '../lib/content'
+import { career, pillars, photos, site, timeline } from '../lib/content'
 
 export default function Story() {
   return (
@@ -20,9 +20,10 @@ export default function Story() {
           </Reveal>
           <Reveal>
             <p className="eyebrow">Career and business record</p>
-            <p className="mt-5 text-lg text-ivory-2 leading-relaxed">
-              [PLACEHOLDER — His career and business record, in verified, approved detail: roles, companies built or led, and what they achieved. Facts only; nothing to be added here without confirmation from the team.]
+            <p className="mt-5 font-display text-2xl leading-snug">
+              {career.role}, <span className="italic text-gold">{career.company}</span>
             </p>
+            <p className="mt-3 text-lg text-ivory-2 leading-relaxed">{career.detail}</p>
           </Reveal>
           <Reveal>
             <img src={photos.speaking.src} width={photos.speaking.w} height={photos.speaking.h} alt={photos.speaking.alt} loading="lazy" decoding="async" className="mb-8 aspect-[4/3] w-full object-cover object-[50%_25%]" />
@@ -37,12 +38,12 @@ export default function Story() {
       <section className="grain bg-ink-2 py-24 md:py-32">
         <div className="container-x relative z-[2]">
           <SectionHeading eyebrow="What he stands for" title="Who he is" />
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            {credentials.map((c, i) => (
-              <Reveal key={c.line} delay={i * 0.06} className="border-t border-gold/30 pt-6">
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {pillars.map((c, i) => (
+              <Reveal key={c.title} delay={i * 0.06} className="border-t border-gold/30 pt-6">
                 <p className="font-display italic text-gold">{String(i + 1).padStart(2, '0')}</p>
-                <p className="mt-4 text-[0.65rem] tracking-[0.3em] uppercase text-ivory-2">{c.label}</p>
-                <h3 className="mt-2 text-3xl leading-tight">{c.line}</h3>
+                <h3 className="mt-4 text-3xl leading-tight">{c.title}</h3>
+                <p className="mt-3 text-ivory-2 leading-relaxed">{c.body}</p>
               </Reveal>
             ))}
           </div>

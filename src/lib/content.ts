@@ -40,9 +40,24 @@ export const credentials: { label: string; line: string }[] = [
   { label: 'Character', line: 'Hardworking & Dedicated' },
   { label: 'Faith', line: 'Good Christian' },
   { label: 'Family', line: 'Husband & Father of Four' },
-  // FEC candidate ID P60019361 ("FAMILONI, TAIWO JACOB", Independent, President). Owner decision, 15 Nov 2026.
-  { label: 'Political Career', line: 'Independent U.S. Presidential Candidate, 2016' },
 ]
+// The 2016 candidacy moved off the hero (15 Nov 2026) pending the election-lawyer review and eligibility check;
+// it now appears only in the His Story timeline. Source: FEC candidate ID P60019361.
+
+// Four pillars, adapted from his previous website (familoni.com). Shown on His Story.
+export const pillars: { title: string; body: string }[] = [
+  { title: 'Professional Innovator', body: 'Dr., MBA, RFSS, FFSS, CAIS: combining academic excellence with practical innovation and leadership.' },
+  { title: 'Community Catalyst', body: 'An ambassador for positive social and economic change, bridging gaps across every part of society.' },
+  { title: 'Faith & Family', body: 'A devoted Christian, a loving husband and a father of four, grounded in strong moral values.' },
+  { title: 'Natural-Born Leader', body: 'Self-aware and self-directing, with a bold vision for positive change that brings people together.' },
+]
+
+// Career (LinkedIn: "President / Director of Global Strategy (DGS) - PUNDITSOFT"). Dates and description to be confirmed.
+export const career = {
+  role: 'President and Director of Global Strategy',
+  company: 'PUNDITSOFT',
+  detail: '[PLACEHOLDER — what PUNDITSOFT does, since when, and key achievements, confirmed by Dr. Familoni.]',
+}
 
 // Achievements in numbers — PLACEHOLDER values. Replace with verified figures.
 export const achievements: { value: string; label: string }[] = [
@@ -58,6 +73,7 @@ export const timeline: { year: string; title: string; body: string }[] = [
   { year: '[Year]', title: '[PLACEHOLDER] Journey to the United States', body: '[PLACEHOLDER — when and why he moved, early years.]' },
   { year: '[Year]', title: '[PLACEHOLDER] Career and business', body: '[PLACEHOLDER — career record and businesses.]' },
   { year: '[Year]', title: '[PLACEHOLDER] Recognition', body: '[PLACEHOLDER — verified honours and achievements only.]' },
+  { year: '2016', title: 'Independent candidate for U.S. President', body: 'Filed a statement of candidacy with the U.S. Federal Election Commission as an independent candidate for President (FEC candidate ID P60019361).' },
   { year: '[Year]', title: '[PLACEHOLDER] Investing at home', body: '[PLACEHOLDER — the decision to build initiatives in Nigeria.]' },
 ]
 

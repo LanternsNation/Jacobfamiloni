@@ -33,6 +33,8 @@ Tested against the live database: anonymous users can't read applicants/payments
 
 - **15 Nov — "His Heart For The People" section:** letter-card layout on a deep navy USA backdrop; card subtitle "Charity begins at home." The circle photo shows Dr. Familoni with a group of young people in the US. **Owner confirmed consent for publishing the young people's faces (15 Nov).** Keep the written consent on file; remove the photo promptly if any parent or young person asks.
 
+- **15 Nov — Previous site (familoni.com) review:** reused the four pillars (His Story "Who he is") and the PUNDITSOFT role (from LinkedIn; details to confirm). **Not reused:** the Gingrich and Romney "endorsement" quotes (unverified, and they would break guardrail 4), the "Community Leaders" quote, and the campaign contact details and buttons. The Pastor Chuck Smith quote can be added once its source is supplied. The 2016 candidacy line was **moved off the hero** into the His Story timeline, pending (1) the US election-lawyer review — the old site runs an active 2028 campaign with a Donate button, and a 2022 FEC committee lists him as Republican — and (2) confirming eligibility (natural-born citizen requirement). **Do not link familoni.com from this site or share its phone/email.**
+
 ## Configuration
 
 **Vercel → Project → Settings → Environment Variables** (Production + Preview), then redeploy:
@@ -70,7 +72,7 @@ Build settings (auto-detected): Framework **Vite**, build `npm run build`, outpu
 - [ ] Receiving entity name + CAC RC number (admin › Settings) once the entity and its Paystack account exist.
 - [ ] Hero video loop (< 3 MB MP4) if available (admin › Settings › Hero video URL).
 - [ ] Domain (Wed 18 Nov) **before launch** — installed PWAs are tied to the address. Then update `SITE_URL`, `ALLOWED_ORIGINS`, Paystack callback/webhook stays the same.
-- [ ] **US election lawyer: review the "Political Career" line next to the payment flow (see Decisions log).**
+- [ ] **URGENT, before launch — US election lawyer:** review this site against the active 2028 campaign (familoni.com) and the naira payment flow. Also confirm eligibility for the office.
 - [ ] Lawyer review of the privacy policy (Nigeria Data Protection Act 2023) and US election-lawyer review of the donation setup (PRD open items).
 
 ## Next 3 steps
