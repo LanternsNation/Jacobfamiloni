@@ -16,7 +16,12 @@ export function onAppUpdated(fn: Listener) {
 export function registerSW() {
   if (!('serviceWorker' in navigator) || import.meta.env.DEV) return
 
-  const wb = new Workbox('/sw.js', { scope: '/' })
+  let wb: Workbox
+  try {
+    wb = new Workbox('/sw.js', { scope: '/' })
+  } catch {
+    return
+  }
 
   wb.addEventListener('controlling', (event) => {
     if (!event.isUpdate) return
@@ -24,7 +29,7 @@ export function registerSW() {
     window.setTimeout(() => window.location.reload(), 1800)
   })
 
-  wb.register().then((reg) => {
+  wb.register().catch(() => undefined).then((reg) => {
     if (!reg) return
     // Check for a new version every hour while the app stays open, and whenever it comes back to the foreground.
     window.setInterval(() => reg.update().catch(() => {}), 60 * 60 * 1000)
