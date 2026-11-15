@@ -224,23 +224,33 @@ export function SchoolCta() {
           transition={{ duration: 0.9, ease: EASE }}
         >
           {/* organic blob + lighter curve */}
-          <svg viewBox="0 0 400 420" className="absolute left-[6%] bottom-[4%] w-[94%] h-[88%]" aria-hidden>
-            <path d="M58 140 C 40 70, 120 30, 200 46 C 300 64, 372 110, 360 220 C 350 320, 300 400, 196 404 C 96 408, 30 352, 34 270 C 36 220, 70 190, 58 140 Z" fill="#1B2A5C" />
-            <path d="M58 140 C 40 70, 120 30, 200 46 C 140 60, 92 100, 98 170 C 102 220, 70 250, 34 270 C 36 220, 70 190, 58 140 Z" fill="#3C4F8C" opacity="0.55" />
-            {/* tiny flag-star sprinkle */}
-            {[[300, 120], [320, 160], [280, 150], [330, 210]].map(([x, y]) => (
-              <circle key={`${x}${y}`} cx={x} cy={y} r="2.4" fill="#F5F1E8" opacity="0.5" />
-            ))}
+          {/* One SVG: navy blob + photo. The photo is clipped to (everything above the blob's waist) ∪ (the blob),
+              so his body ends exactly on the blob's curved base. */}
+          <svg viewBox="0 0 400 432" className="absolute inset-0 h-full w-full z-[3] overflow-visible" role="img" aria-label="Dr. Jacob Familoni">
+            <defs>
+              <clipPath id="schoolClip">
+                <rect x="70" y="-40" width="300" height="232" />
+                <path transform="translate(24 18) scale(0.94 0.92)" d="M58 140 C 40 70, 120 30, 200 46 C 300 64, 372 110, 360 220 C 350 320, 300 400, 196 404 C 96 408, 30 352, 34 270 C 36 220, 70 190, 58 140 Z" />
+              </clipPath>
+            </defs>
+            <g transform="translate(24 18) scale(0.94 0.92)">
+              <path d="M58 140 C 40 70, 120 30, 200 46 C 300 64, 372 110, 360 220 C 350 320, 300 400, 196 404 C 96 408, 30 352, 34 270 C 36 220, 70 190, 58 140 Z" fill="#1B2A5C" />
+              <path d="M58 140 C 40 70, 120 30, 200 46 C 140 60, 92 100, 98 170 C 102 220, 70 250, 34 270 C 36 220, 70 190, 58 140 Z" fill="#3C4F8C" opacity="0.55" />
+              {[[300, 120], [320, 160], [280, 150], [330, 210]].map(([x, y]) => (
+                <circle key={`${x}${y}`} cx={x} cy={y} r="2.4" fill="#F5F1E8" opacity="0.5" />
+              ))}
+            </g>
+            <image
+              href="/media/familoni-school-820.webp"
+              x="17"
+              y="-6"
+              width="366"
+              height="424"
+              preserveAspectRatio="xMidYMax meet"
+              clipPath="url(#schoolClip)"
+              style={{ filter: 'drop-shadow(0 18px 22px rgba(11,15,26,0.22))' }}
+            />
           </svg>
-          <img
-            src="/media/familoni-school-820.webp"
-            srcSet="/media/familoni-school-520.webp 520w, /media/familoni-school-820.webp 820w"
-            sizes="(min-width: 768px) 30rem, 90vw"
-            alt="Dr. Jacob Familoni"
-            loading="lazy"
-            decoding="async"
-            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[98%] w-auto max-w-none z-[3] drop-shadow-[0_24px_30px_rgba(11,15,26,0.25)] [mask-image:linear-gradient(to_bottom,#000_80%,transparent)]"
-          />
 
           {/* tiles: AI · code · design · business */}
           <Tile className="left-[2%] top-[22%] h-14 w-14 md:h-16 md:w-16" tilt={-10} delay={0}>
