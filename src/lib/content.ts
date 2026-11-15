@@ -57,6 +57,10 @@ export const heroMedia = {
   videoSrc: '', // PLACEHOLDER: e.g. /media/hero-loop.mp4
   posterSrc: '/media/familoni-hero-1080.webp',
   posterSrcSet: '/media/familoni-hero-640.webp 640w, /media/familoni-hero-1080.webp 1080w, /media/familoni-hero-1536.webp 1536w',
+  // Studio cut-out (real photo, background removed, black-and-white). Replace with a dedicated shoot when available.
+  figureSrc: '/media/familoni-studio-1080.webp',
+  figureSrcSet: '/media/familoni-studio-640.webp 640w, /media/familoni-studio-1080.webp 1080w, /media/familoni-studio-1400.webp 1400w',
+  figureRatio: 1460 / 2048,
 }
 
 // Photos supplied by the team. Place/date captions are PLACEHOLDERS until confirmed.

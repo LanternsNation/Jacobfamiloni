@@ -9,12 +9,14 @@ import type { Initiative } from '../lib/types'
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-/* ---------------------------------------------------------------- Hero */
+/* ---------------------------------------------------------------- Hero
+ * Editorial portrait poster: name set huge BEHIND the figure, surname in gold italic IN FRONT,
+ * a fine diagonal rule, small spaced captions. Real photo (cut out, black-and-white).
+ */
 function Hero() {
   const { hero } = useSettings()
   const reduce = useReducedMotion()
   const video = hero.video_url || heroMedia.videoSrc
-  const poster = hero.poster_url || heroMedia.posterSrc
   const [allowVideo, setAllowVideo] = useState(false)
   useEffect(() => {
     const c = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
@@ -22,61 +24,106 @@ function Hero() {
     setAllowVideo(Boolean(video) && !slow && !reduce)
   }, [video, reduce])
 
-  const statement = hero.headline || site.legacyStatement
-  const anim = (delay: number, y = 24) =>
-    reduce ? {} : { initial: { opacity: 0, y }, animate: { opacity: 1, y: 0 }, transition: { duration: 1.1, delay, ease } }
+  const figure = hero.poster_url || heroMedia.figureSrc
+  const fade = (delay: number, y = 18) =>
+    reduce ? {} : { initial: { opacity: 0, y }, animate: { opacity: 1, y: 0 }, transition: { duration: 1.2, delay, ease } }
 
   return (
-    <section className="grain relative min-h-[100svh] overflow-hidden bg-ink">
-      {/* Portrait: full-bleed on phones, right-hand frame on desktop */}
-      <div className="absolute inset-0 md:left-auto md:w-[55%] lg:w-[52%] overflow-hidden">
-        <motion.div className="absolute inset-0" initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1.6, delay: 0.2 }}>
-          <img
-            src={poster}
-            srcSet={!hero.poster_url ? heroMedia.posterSrcSet : undefined}
-            sizes="(min-width: 768px) 52vw, 100vw"
-            alt="Dr. Jacob Familoni"
-            fetchPriority="high"
-            decoding="async"
-            className={`absolute inset-0 h-full w-full object-cover object-[50%_18%] ${reduce ? '' : 'kenburns'}`}
-          />
-          {allowVideo && <video className="absolute inset-0 h-full w-full object-cover" src={video} poster={poster} autoPlay muted loop playsInline preload="none" aria-hidden />}
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-ink/25 md:from-ink/90 md:via-transparent md:to-transparent" />
-        <div className="hidden md:block absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-ink to-transparent" />
-        <div className="absolute inset-0 mix-blend-multiply bg-[#2a1d0c]/10" />
-      </div>
-      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink/85 to-transparent" aria-hidden />
-
-      {/* Letterbox bars open on load */}
-      {!reduce && (
-        <>
-          <motion.div className="absolute inset-x-0 top-0 z-[3] h-[12vh] bg-ink" initial={{ y: 0 }} animate={{ y: '-100%' }} transition={{ duration: 1.3, delay: 0.35, ease }} />
-          <motion.div className="absolute inset-x-0 bottom-0 z-[3] h-[12vh] bg-ink" initial={{ y: 0 }} animate={{ y: '100%' }} transition={{ duration: 1.3, delay: 0.35, ease }} />
-        </>
+    <section className="grain relative h-[100svh] min-h-[640px] overflow-hidden bg-ink">
+      {/* Studio backdrop: soft key light from upper right */}
+      <div className="absolute inset-0 bg-[radial-gradient(70%_55%_at_62%_32%,#2b2c31_0%,#17181d_45%,#0b0f1a_85%)]" />
+      {allowVideo && (
+        <video className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-luminosity" src={video} autoPlay muted loop playsInline preload="none" aria-hidden />
       )}
 
-      <div className="container-x relative z-[2] flex min-h-[100svh] flex-col justify-end pb-14 md:justify-center md:pb-0 pt-28">
-        <div className="md:max-w-[52%]">
-          <motion.p className="eyebrow" {...anim(0.9, 0)}>{statement}</motion.p>
-          <h1 className="mt-6 md:mt-8 leading-[0.86]">
-            <motion.span className="block font-display italic font-light text-gold text-3xl md:text-5xl" {...anim(1.0)}>Dr.</motion.span>
-            <motion.span className="block text-[19vw] md:text-[9.5vw] lg:text-[8.6rem] tracking-[-0.04em]" {...anim(1.1)}>Jacob</motion.span>
-            <motion.span className="block text-[19vw] md:text-[9.5vw] lg:text-[8.6rem] tracking-[-0.04em]" {...anim(1.22)}>Familoni</motion.span>
-          </h1>
-          <motion.div className="mt-8 h-px w-24 bg-gold origin-left" initial={reduce ? false : { scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.2, delay: 1.5, ease }} />
-          {hero.subhead && <motion.p className="mt-6 text-lg md:text-xl text-ivory-2 max-w-md leading-relaxed" {...anim(1.6, 10)}>{hero.subhead}</motion.p>}
-          <motion.div className="mt-9 flex flex-wrap gap-3" {...anim(1.75, 10)}>
-            <Link to="/story" className="btn-gold">His story</Link>
-            <Link to="/initiatives" className="btn-ghost">The work at home</Link>
+      {/* 1 · First name, set huge, BEHIND the figure */}
+      <motion.div
+        aria-hidden
+        className="absolute inset-x-0 top-[23%] md:top-[30%] z-[1] flex justify-center pointer-events-none select-none"
+        initial={reduce ? false : { opacity: 0, letterSpacing: '0.35em' }}
+        animate={{ opacity: 1, letterSpacing: '0.04em' }}
+        transition={{ duration: 2.2, delay: 0.5, ease }}
+      >
+        <span className="font-display font-light uppercase leading-none text-ivory/95 text-[35vw] md:text-[24vw] whitespace-nowrap">Jacob</span>
+      </motion.div>
+
+      {/* 2 · The figure */}
+      <motion.img
+        src={figure}
+        srcSet={!hero.poster_url ? heroMedia.figureSrcSet : undefined}
+        sizes="(min-width: 768px) 46vw, 96vw"
+        alt="Dr. Jacob Familoni"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute bottom-0 left-1/2 z-[2] h-[78svh] md:h-[86svh] w-auto max-w-none -translate-x-[50%] md:-translate-x-[38%] object-contain object-bottom"
+        style={{
+          aspectRatio: String(heroMedia.figureRatio),
+          // soften the original photo's straight left edge (sleeve) into the studio backdrop
+          WebkitMaskImage: 'linear-gradient(to right, transparent 0%, #000 22%, #000 100%)',
+          maskImage: 'linear-gradient(to right, transparent 0%, #000 22%, #000 100%)',
+        }}
+        initial={reduce ? false : { opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.6, delay: 0.25, ease }}
+      />
+      {/* ground the figure */}
+      <div className="absolute inset-x-0 bottom-0 z-[3] h-[46%] bg-gradient-to-t from-ink via-ink/75 to-transparent" />
+
+      {/* 3 · Fine diagonal rule */}
+      <motion.svg
+        aria-hidden
+        className="absolute inset-0 z-[4] h-full w-full pointer-events-none"
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        initial={reduce ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, delay: 1.4 }}
+      >
+        <line x1="4" y1="96" x2="98" y2="14" stroke="#C9A24A" strokeOpacity="0.55" strokeWidth="0.12" vectorEffect="non-scaling-stroke" />
+      </motion.svg>
+
+      {/* 4 · Caption block, top left */}
+      <motion.div className="absolute left-5 md:left-[max(2rem,calc((100vw-72rem)/2+2rem))] top-24 md:top-[18%] z-[5] max-w-[11rem]" {...fade(1.1, 0)}>
+        <span className="block h-px w-6 bg-gold/80 rotate-[-40deg] origin-left mb-4" />
+        <p className="text-[0.62rem] leading-[1.9] tracking-[0.32em] uppercase text-ivory-2">
+          A legacy
+          <br />
+          of excellence,
+          <br />
+          starting at home
+        </p>
+      </motion.div>
+
+      {/* 5 · Surname in gold italic, IN FRONT of the figure */}
+      <div className="absolute inset-x-0 bottom-0 z-[5]">
+        <div className="container-x pb-10 md:pb-14">
+          <motion.p className="font-display italic font-light text-gold text-2xl md:text-4xl leading-none" {...fade(1.25)}>Dr.</motion.p>
+          <motion.h1
+            className="font-display italic font-light text-gold leading-[0.82] tracking-[-0.035em] text-[22vw] md:text-[12vw] lg:text-[11rem]"
+            {...fade(1.35, 30)}
+          >
+            Familoni
+            <span className="sr-only"> — Dr. Jacob Familoni</span>
+          </motion.h1>
+          <motion.div className="mt-6 md:mt-8 flex flex-col md:flex-row md:items-end md:justify-between gap-6" {...fade(1.7, 10)}>
+            <p className="max-w-sm text-ivory-2 text-[0.95rem] md:text-base leading-relaxed">
+              {hero.subhead && !hero.subhead.includes('PLACEHOLDER') ? hero.subhead : 'His story, his work, and what he is building at home in Nigeria.'}
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link to="/story" className="btn-gold">His story</Link>
+              <Link to="/initiatives" className="btn-ghost">The work at home</Link>
+            </div>
           </motion.div>
         </div>
       </div>
 
-      <div className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] flex-col items-center gap-3 text-[0.65rem] tracking-[0.3em] uppercase text-muted">
-        <span>Scroll</span>
-        <span className="block h-12 w-px bg-gold/70 scroll-cue" />
-      </div>
+      {/* Letterbox bars open on load */}
+      {!reduce && (
+        <>
+          <motion.div className="absolute inset-x-0 top-0 z-[8] h-[12vh] bg-ink" initial={{ y: 0 }} animate={{ y: '-100%' }} transition={{ duration: 1.3, delay: 0.2, ease }} />
+          <motion.div className="absolute inset-x-0 bottom-0 z-[8] h-[12vh] bg-ink" initial={{ y: 0 }} animate={{ y: '100%' }} transition={{ duration: 1.3, delay: 0.2, ease }} />
+        </>
+      )}
     </section>
   )
 }
