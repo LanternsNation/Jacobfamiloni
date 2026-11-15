@@ -84,7 +84,7 @@ function HeroName() {
 }
 
 /* ------------------------------------------------------- MobileCredentials
- * Phones only: a story-style reel in the space above the name. Four segment bars fill in turn;
+ * A story-style reel: in the space above the name on phones, top-right (mirroring the caption) on desktop. Four segment bars fill in turn;
  * each line slides up with a small label. Copy supplied by the team (see content.ts → credentials).
  */
 function MobileCredentials() {
@@ -100,7 +100,7 @@ function MobileCredentials() {
 
   return (
     <motion.div
-      className="md:hidden absolute inset-x-5 top-[10.4rem] z-[5]"
+      className="absolute inset-x-5 top-[10.4rem] md:inset-x-auto md:right-[max(2rem,calc((100vw-72rem)/2+2rem))] md:top-[13%] xl:top-[18%] md:w-[14.5rem] xl:w-[20rem] z-[5]"
       initial={reduce ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.9, delay: 1.3 }}
@@ -137,7 +137,7 @@ function MobileCredentials() {
               className="absolute inset-0"
             >
               <p className="text-[0.6rem] tracking-[0.32em] uppercase text-ivory-2">{c.label}</p>
-              <p className={`mt-1.5 font-display italic font-light text-ivory leading-[1.05] ${c.line.length > 30 ? 'text-[1.42rem]' : 'text-[1.8rem]'}`}>{c.line}</p>
+              <p className={`mt-1.5 font-display italic font-light text-ivory leading-[1.05] ${c.line.length > 30 ? 'text-[1.42rem] md:text-[1.2rem] xl:text-[1.42rem]' : 'text-[1.8rem] md:text-[1.45rem] xl:text-[1.8rem]'}`}>{c.line}</p>
             </motion.div>
           </AnimatePresence>
         </div>
@@ -189,7 +189,7 @@ function Hero() {
         alt="Dr. Jacob Familoni"
         fetchPriority="high"
         decoding="async"
-        className="absolute bottom-0 left-1/2 z-[2] h-[67svh] md:h-[86svh] w-auto max-w-none -translate-x-[50%] md:-translate-x-[38%] object-contain object-bottom"
+        className="absolute bottom-0 left-1/2 z-[2] h-[67svh] md:h-[74svh] xl:h-[86svh] w-auto max-w-none -translate-x-[50%] md:-translate-x-[38%] object-contain object-bottom"
         style={{ aspectRatio: String(heroMedia.figureRatio) }}
         initial={reduce ? false : { opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
@@ -224,7 +224,7 @@ function Hero() {
         <p className="hidden md:block mt-4 font-display italic text-gold text-sm">A legacy of excellence, starting at home.</p>
       </motion.div>
 
-      {/* Phones: credential reel fills the space above the name */}
+      {/* Credential reel: above the name on phones, top-right on desktop */}
       <MobileCredentials />
 
       {/* 5 · Surname in gold italic, IN FRONT of the figure */}
