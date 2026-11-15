@@ -73,7 +73,7 @@ function HeroName() {
   return (
     <motion.div
       aria-hidden
-      className="absolute inset-x-0 top-[23%] md:top-[30%] z-[1] flex justify-center pointer-events-none select-none"
+      className="absolute inset-x-0 top-[24.5%] md:top-[30%] z-[1] flex justify-center pointer-events-none select-none"
       initial={reduce || phone ? false : { opacity: 0, letterSpacing: '0.35em' }}
       animate={reduce || phone ? undefined : { opacity: 1, letterSpacing: '0.04em' }}
       transition={{ duration: 2.2, delay: 0.5, ease }}
@@ -122,7 +122,7 @@ function Hero() {
         alt="Dr. Jacob Familoni"
         fetchPriority="high"
         decoding="async"
-        className="absolute bottom-0 left-1/2 z-[2] h-[70svh] md:h-[86svh] w-auto max-w-none -translate-x-[50%] md:-translate-x-[38%] object-contain object-bottom"
+        className="absolute bottom-0 left-1/2 z-[2] h-[67svh] md:h-[86svh] w-auto max-w-none -translate-x-[50%] md:-translate-x-[38%] object-contain object-bottom"
         style={{ aspectRatio: String(heroMedia.figureRatio) }}
         initial={reduce ? false : { opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}

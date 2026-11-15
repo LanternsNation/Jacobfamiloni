@@ -60,7 +60,7 @@ export const heroMedia = {
   // Studio cut-out (real photo, background removed, black-and-white). Replace with a dedicated shoot when available.
   figureSrc: '/media/familoni-studio-1080.webp',
   figureSrcSet: '/media/familoni-studio-640.webp 640w, /media/familoni-studio-1080.webp 1080w, /media/familoni-studio-1400.webp 1400w',
-  figureRatio: 1460 / 2048,
+  figureRatio: 1460 / 2120,
 }
 
 // Photos supplied by the team. Place/date captions are PLACEHOLDERS until confirmed.
