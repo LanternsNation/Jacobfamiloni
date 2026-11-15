@@ -1,0 +1,4 @@
+# Edge Function settings (used by `supabase functions deploy`).
+# The Paystack webhook authenticates with the HMAC signature, not a Supabase JWT.
+[functions.paystack-webhook]
+verify_jwt = false
