@@ -41,6 +41,8 @@ Tested against the live database: anonymous users can't read applicants/payments
 
 - **15 Nov — AI School CTA (Home, after His Journey):** `src/components/SchoolCta.tsx`. Light grid canvas, 3D pencil cup and plant, curved arrows, floating track tiles (drawn icons — no Google/YouTube logos), rotating "Track" card, Apply Now + Play Video (plays the first YouTube ID in Settings; shows "Sponsor a seat" until one is set). Image: Dr. Familoni (grey-suit cutout); the gold card reads "Familoni · AI Digital School". Do not use the navy-suit headshot with lapel pins — they are Republican Party elephant pins.
 
+- **15 Nov — Home order:** Hero → The Man. → His Heart For The People → His Journey → AI School CTA → footer. The Work (four initiatives), The People (live impact counter), Achievements, Latest videos and the closing "₦2,000" Join section are **parked** (still in `src/pages/Home.tsx`, exported, not rendered) while the owner reworks them. The impact counter still shows on the Support and Impact pages.
+
 ## Configuration
 
 **Vercel → Project → Settings → Environment Variables** (Production + Preview), then redeploy:

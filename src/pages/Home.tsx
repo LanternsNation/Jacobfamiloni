@@ -488,7 +488,7 @@ function HomeInterlude() {
 }
 
 /* ------------------------------------------------- Achievements (real only) */
-function Achievements() {
+export function Achievements() {
   const real = achievements.filter((a) => Number.isFinite(Number(a.value)) && !a.label.includes('PLACEHOLDER'))
   if (real.length < 3) return null // shown once at least three verified figures are filled in (src/lib/content.ts)
   return (
@@ -547,7 +547,7 @@ function WorkRow({ i, idx }: { i: Initiative; idx: number }) {
   )
 }
 
-function TheWork() {
+export function TheWork() {
   const { data } = useInitiatives()
   const list = data ?? []
   return (
@@ -571,7 +571,7 @@ function TheWork() {
 }
 
 /* ------------------------------------------------------- III · The people */
-function ThePeople() {
+export function ThePeople() {
   return (
     <section className="container-x py-28 md:py-40">
       <div className="flex items-end justify-between gap-6 flex-wrap">
@@ -585,7 +585,7 @@ function ThePeople() {
   )
 }
 
-function LatestVideos() {
+export function LatestVideos() {
   const { videos } = useSettings()
   const ids = videos.youtube_ids.slice(0, 3)
   if (!ids.length) return null // appears once YouTube links are added in admin › Settings
@@ -601,7 +601,7 @@ function LatestVideos() {
 }
 
 /* ------------------------------------------------------------- IV · Join */
-function Join() {
+export function Join() {
   return (
     <section className="grain relative overflow-hidden bg-ink-2">
       <div className="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_0%,rgba(178,34,52,0.14),transparent_70%)]" />
@@ -631,11 +631,8 @@ export default function Home() {
       <HomeInterlude />
       <JourneySlider />
       <SchoolCta />
-      <Achievements />
-      <TheWork />
-      <ThePeople />
-      <LatestVideos />
-      <Join />
+      {/* Parked while the owner reworks them (kept in this file, exported so they stay type-checked):
+          Achievements, TheWork (four initiatives), ThePeople (live impact counter), LatestVideos, Join */}
     </>
   )
 }
