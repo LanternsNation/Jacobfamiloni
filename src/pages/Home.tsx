@@ -11,7 +11,7 @@ import type { Initiative } from '../lib/types'
 const ease = [0.22, 1, 0.36, 1] as const
 
 /* -------------------------------------------------------------- HeroName
- * Phones: "JACOB" types itself letter by letter, holds, erases, repeats (with a red caret).
+ * Phones: "JACOB" types itself letter by letter, holds 5 s, erases, repeats (with a red caret).
  * Desktop: letters close in from wide spacing once. Width never changes, so nothing jumps.
  */
 const FIRST = 'JACOB'
@@ -46,7 +46,7 @@ function HeroName() {
       let wait = dir === 1 ? 230 : 110
       if (dir === 1 && n === FIRST.length) {
         dir = -1
-        wait = 2600 // hold the full name
+        wait = 5000 // hold the full name for 5 s before erasing and retyping
       } else if (dir === -1 && n === 0) {
         dir = 1
         wait = 650
@@ -73,7 +73,7 @@ function HeroName() {
   return (
     <motion.div
       aria-hidden
-      className="absolute inset-x-0 top-[24.5%] md:top-[30%] z-[1] flex justify-center pointer-events-none select-none"
+      className="absolute inset-x-0 top-[31%] md:top-[30%] z-[1] flex justify-center pointer-events-none select-none"
       initial={reduce || phone ? false : { opacity: 0, letterSpacing: '0.35em' }}
       animate={reduce || phone ? undefined : { opacity: 1, letterSpacing: '0.04em' }}
       transition={{ duration: 2.2, delay: 0.5, ease }}
