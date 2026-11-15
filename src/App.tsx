@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import Home from './pages/Home'
+import { InstallPrompt, OfflineBanner, UpdateToast } from './pwa/PwaUi'
 
 // Home ships in the main bundle; every other page loads on demand to keep first paint light.
 const Story = lazy(() => import('./pages/Story'))
@@ -25,6 +26,10 @@ function PageFallback() {
 
 export default function App() {
   return (
+    <>
+    <UpdateToast />
+    <OfflineBanner />
+    <InstallPrompt />
     <Suspense fallback={<PageFallback />}>
       <Routes>
         <Route path="/admin/*" element={<Admin />} />
@@ -46,5 +51,6 @@ export default function App() {
         </Route>
       </Routes>
     </Suspense>
+    </>
   )
 }
