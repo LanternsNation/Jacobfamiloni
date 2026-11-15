@@ -83,6 +83,66 @@ function HeroName() {
   )
 }
 
+/* ---------------------------------------------------------- MobileJourney
+ * Phones only: fills the space between the caption and the name with his journey —
+ * a dashed arc from Nigeria to the U.S., a light travelling there and back ("and home again").
+ */
+function MobileJourney() {
+  const reduce = useReducedMotion()
+  const path = 'M 18 62 C 110 -6, 250 -6, 342 62'
+  return (
+    <motion.div
+      aria-hidden
+      className="md:hidden absolute inset-x-5 top-[9.1rem] z-[5] pointer-events-none"
+      initial={reduce ? false : { opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, delay: 1.4 }}
+    >
+      <svg viewBox="0 0 360 82" className="w-full h-auto overflow-visible">
+        <defs>
+          <radialGradient id="jglow">
+            <stop offset="0%" stopColor="#fff" stopOpacity="1" />
+            <stop offset="40%" stopColor="#F5F1E8" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="#F5F1E8" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+        {/* the route */}
+        <motion.path
+          d={path}
+          fill="none"
+          stroke="#F5F1E8"
+          strokeOpacity="0.45"
+          strokeWidth="1"
+          strokeDasharray="3 5"
+          initial={reduce ? false : { pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1.6, delay: 1.5, ease }}
+        />
+        {/* end points */}
+        <circle cx="18" cy="62" r="4.5" fill="#12B76A" />
+        <circle cx="18" cy="62" r="8" fill="none" stroke="#12B76A" strokeOpacity="0.5" className={reduce ? '' : 'journey-pulse'} />
+        <circle cx="342" cy="62" r="4.5" fill="#E04A5C" />
+        {/* the traveller: out to the U.S., then home again */}
+        {!reduce && (
+          <g>
+            <circle r="7" fill="url(#jglow)">
+              <animateMotion dur="7s" begin="3s" repeatCount="indefinite" path={path} keyPoints="0;1;1;0;0" keyTimes="0;0.38;0.5;0.88;1" calcMode="linear" />
+            </circle>
+            <circle r="2" fill="#fff">
+              <animateMotion dur="7s" begin="3s" repeatCount="indefinite" path={path} keyPoints="0;1;1;0;0" keyTimes="0;0.38;0.5;0.88;1" calcMode="linear" />
+            </circle>
+          </g>
+        )}
+      </svg>
+      <div className="mt-1 flex items-start justify-between">
+        <span className="font-display italic text-[0.95rem] text-ivory">Nigeria</span>
+        <span className="font-display italic text-[0.8rem] text-gold self-end translate-y-1">and home again.</span>
+        <span className="font-display italic text-[0.95rem] text-ivory">U.S.</span>
+      </div>
+    </motion.div>
+  )
+}
+
 /* ---------------------------------------------------------------- Hero
  * Editorial portrait poster: name set huge BEHIND the figure, surname in gold italic IN FRONT,
  * a fine diagonal rule, small spaced captions. Real photo (cut out, black-and-white).
@@ -156,6 +216,9 @@ function Hero() {
         </p>
         <p className="hidden md:block mt-4 font-display italic text-gold text-sm">A legacy of excellence, starting at home.</p>
       </motion.div>
+
+      {/* Phones: Nigeria ⇄ U.S. journey arc fills the space above the name */}
+      <MobileJourney />
 
       {/* 5 · Surname in gold italic, IN FRONT of the figure */}
       <div className="absolute inset-x-0 bottom-0 z-[5]">

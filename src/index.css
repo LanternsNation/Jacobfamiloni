@@ -153,6 +153,8 @@
   @keyframes flagwave { 0%, 100% { transform: skewY(-1.2deg) translateY(0); } 50% { transform: skewY(1.2deg) translateY(-1%); } }
   .flag-canton { animation: cantonfade 7.5s ease-in-out infinite; }
   @keyframes cantonfade { 0%, 100% { opacity: 0.25; } 40%, 70% { opacity: 0.6; } }
+  .journey-pulse { animation: jpulse 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes jpulse { 0% { transform: scale(0.6); opacity: 0.9; } 100% { transform: scale(1.9); opacity: 0; } }
   .hero-caret { animation: caret 0.9s steps(1) infinite; }
   @keyframes caret { 50% { opacity: 0; } }
   .marquee { display: flex; width: max-content; animation: marquee 48s linear infinite; }
