@@ -19,6 +19,21 @@ export const site = {
   contactEmail: '', // PLACEHOLDER
 }
 
+// "The Man." section (Home, chapter I). Copy supplied by the team, 15 Nov 2026.
+export const about = {
+  name: 'Jacob Familoni',
+  honorific: 'Dr.',
+  postNominals: ['MBA', 'RFSS', 'FFSS', 'CAIS'],
+  kicker: 'Independent U.S. Presidential Candidate, 2016.',
+  paragraphs: [
+    'Jacob Familoni is a professional Innovator and Entrepreneur, a hardworking and dedicated individual, a good Christian, a husband, and a father of four.',
+    'An ambassador and a catalyst for positive social and economic change, Jacob embodies the qualities of a natural-born leader, a much-needed leader of our time. He exudes the principles of self-aware and self-directing, with a bold vision for positive change that bridges social, economic and political divides and brings people together.',
+    'Above all, Jacob is a model of diligence, a caring friend, colleague, and a down-to-earth individual.',
+  ],
+  // Typeset signature (placeholder). Replace with a scan of his real signature when available.
+  signature: 'Jacob Familoni',
+}
+
 // Who he is, in the team's words (shown as the reel in the mobile hero, and as values on His Story).
 export const credentials: { label: string; line: string }[] = [
   { label: 'Professional', line: 'Innovator & Entrepreneur' },
@@ -73,6 +88,7 @@ export const photos = {
   candid: { src: '/media/familoni-candid-720.webp', w: 720, h: 900, alt: 'Dr. Jacob Familoni, smiling', caption: '[PLACEHOLDER — place, year]' },
   speaking: { src: '/media/familoni-speaking-479.webp', w: 479, h: 720, alt: 'Dr. Jacob Familoni speaking at a lectern', caption: '[PLACEHOLDER — occasion, place, year]' },
   archive: { src: '/media/familoni-archive-us-531.webp', w: 531, h: 800, alt: 'Dr. Jacob Familoni, portrait', caption: '[PLACEHOLDER — place, year]' },
+  about: { src: '/media/familoni-about-960.webp', srcSet: '/media/familoni-about-600.webp 600w, /media/familoni-about-960.webp 960w', w: 871, h: 1627, alt: 'Dr. Jacob Familoni, standing, hands in pockets' },
   home: {
     src: '/media/familoni-portrait-home-1080.webp',
     srcSet: '/media/familoni-portrait-home-640.webp 640w, /media/familoni-portrait-home-1080.webp 1080w, /media/familoni-portrait-home-1440.webp 1440w',

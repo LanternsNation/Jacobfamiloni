@@ -29,6 +29,8 @@ Tested against the live database: anonymous users can't read applicants/payments
 - **15 Nov — Identity reel (owner decision):** the mobile hero reel and His Story "Who he is" show: Professional · Innovator & Entrepreneur; Character · Hardworking & Dedicated; Faith · Good Christian; Family · Husband & Father of Four; Political Career · Independent U.S. Presidential Candidate, 2016. Edit in `src/lib/content.ts` → `credentials`.
 - **15 Nov — 2016 candidacy shown (owner decision; overrides PRD guardrail 1):** source is the FEC candidate record P60019361 ("FAMILONI, TAIWO JACOB", Independent, President; the FEC shows no reported financial activity for 2015–2016). Keep the wording exactly as the FEC records it — "candidate", not "presidential nominee" or "ran for President" with vote claims. **Before launch, have the US election lawyer review this line together with the payment pages**: the reel sits on the same screen as "Sponsor a Seat", and payments come mostly from Nigerians (foreign nationals under US law). Keep all payment pages free of any political wording.
 
+- **15 Nov — "The Man." section (owner copy):** Home chapter I is now an editorial "about" spread (ivory page, B&W full-length portrait, credentials MBA · RFSS · FFSS · CAIS, owner's bio, typeset signature). Owner chose to soften one sentence on the payment-bearing Home page: "lead and take America on a revolutionary journey" became "a bold vision for positive change that bridges social, economic and political divides and brings people together." Copy lives in `src/lib/content.ts` → `about`. The signature is typeset (placeholder) — replace with a scan of his real signature.
+
 ## Configuration
 
 **Vercel → Project → Settings → Environment Variables** (Production + Preview), then redeploy:

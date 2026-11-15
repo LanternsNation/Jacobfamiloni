@@ -4,7 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Reveal } from '../components/Reveal'
 import { FlagStripes } from '../components/FlagStripes'
 import { CohortBanner, CountUp, GalleryCard, ImpactCounter, YouTubeLite } from '../components/ui'
-import { achievements, credentials, heroMedia, photos, site } from '../lib/content'
+import { about, achievements, credentials, heroMedia, photos } from '../lib/content'
 import { useGallery, useInitiatives, useSettings } from '../lib/data'
 import type { Initiative } from '../lib/types'
 
@@ -275,26 +275,63 @@ function Chapter({ n, title, children, className = '' }: { n: string; title: str
   )
 }
 
-/* ------------------------------------------------------- I · The man */
+/* ------------------------------------------------------- I · The man
+ * Editorial "about" spread on ivory: full-length B&W portrait left, vertical chapter label,
+ * big serif heading with a red full stop, credentials, copy and signature right.
+ */
 function TheMan() {
   return (
-    <section className="container-x py-28 md:py-44 grid md:grid-cols-12 gap-14 items-center">
-      <Reveal className="md:col-span-5">
-        <div className="relative">
-          <div className="absolute -bottom-5 -right-5 hidden md:block h-full w-full border border-gold/30" aria-hidden />
-          <img src={photos.candid.src} width={photos.candid.w} height={photos.candid.h} alt={photos.candid.alt} loading="lazy" decoding="async" className="relative w-full aspect-[4/5] object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-ink/60 via-transparent to-transparent" />
+    <section className="relative overflow-hidden bg-[#EFECE6] text-ink">
+      <div className="container-x relative grid md:grid-cols-12 gap-10 md:gap-8 pt-20 md:pt-28">
+        {/* vertical label */}
+        <div className="hidden md:flex md:col-span-1 flex-col items-center pt-2">
+          <span className="text-[0.7rem] tracking-[0.28em] uppercase text-ink/70 [writing-mode:vertical-rl] rotate-180">Chapter I · The Man</span>
+          <span className="mt-6 h-24 w-px bg-ink/40" />
         </div>
-      </Reveal>
-      <div className="md:col-span-6 md:col-start-7">
-        <Chapter n="I" title="The man" />
-        <Reveal delay={0.1}>
-          <p className="mt-10 font-display text-[1.9rem] md:text-[2.8rem] leading-[1.12] text-ivory font-light">{site.storyInBrief}</p>
-          <Link to="/story" className="group mt-12 inline-flex items-center gap-4 text-gold">
-            <span className="h-px w-12 bg-gold transition-all duration-500 group-hover:w-20" />
-            Read his story
-          </Link>
+
+        {/* portrait */}
+        <Reveal className="md:col-span-5 relative order-2 md:order-none self-end">
+          <img
+            src={photos.about.src}
+            srcSet={photos.about.srcSet}
+            sizes="(min-width: 768px) 40vw, 92vw"
+            width={photos.about.w}
+            height={photos.about.h}
+            alt={photos.about.alt}
+            loading="lazy"
+            decoding="async"
+            className="relative z-[1] mx-auto block w-[86%] md:w-full max-w-[30rem] h-auto drop-shadow-[0_30px_40px_rgba(11,15,26,0.18)]"
+          />
         </Reveal>
+
+        {/* copy */}
+        <div className="md:col-span-6 md:pl-6 lg:pl-10 md:pt-6 pb-4 md:pb-28 order-1 md:order-none">
+          <Reveal>
+            <p className="md:hidden text-[0.65rem] tracking-[0.28em] uppercase text-ink/60 mb-6">Chapter I</p>
+            <h2 className="text-[22vw] md:text-[7.5rem] lg:text-[8.6rem] leading-[0.82] tracking-[-0.045em] font-[350] text-ink">
+              The Man<span className="text-[#B22234]">.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <p className="mt-8 font-display text-2xl md:text-[1.7rem] leading-tight text-ink">
+              <span className="italic text-[#B22234]">{about.honorific}</span> {about.name}
+            </p>
+            <p className="mt-2 text-[0.7rem] tracking-[0.28em] uppercase text-ink/60">{about.postNominals.join(' · ')}</p>
+            <p className="mt-6 font-display italic text-lg md:text-xl text-ink/85">{about.kicker}</p>
+          </Reveal>
+          <Reveal delay={0.14}>
+            <div className="mt-6 space-y-5 text-[0.98rem] leading-[1.75] text-ink/80 max-w-[34rem]">
+              {about.paragraphs.map((p) => <p key={p}>{p}</p>)}
+            </div>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <p className="mt-10 font-signature text-5xl md:text-6xl text-ink leading-none -rotate-3 origin-left">{about.signature}</p>
+            <span className="mt-6 block h-px w-10 bg-ink/50" />
+            <Link to="/story" className="group mt-6 inline-flex items-center gap-3 text-sm text-ink">
+              Read his full story <span className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </Reveal>
+        </div>
       </div>
     </section>
   )
