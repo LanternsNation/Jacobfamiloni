@@ -52,6 +52,21 @@ export const pillars: { title: string; body: string }[] = [
   { title: 'Natural-Born Leader', body: 'Self-aware and self-directing, with a bold vision for positive change that brings people together.' },
 ]
 
+// Values and education convictions, adapted from his previous site with all US-policy content removed.
+export const beliefs: { title: string; body: string }[] = [
+  { title: 'Transparency', body: 'Leading with honesty and open communication.' },
+  { title: 'Accountability', body: 'Holding himself, and every leader, to the highest ethical standards.' },
+  { title: 'Service', body: 'Putting people above personal gain.' },
+  { title: 'Dignity', body: 'Upholding the worth of every individual.' },
+]
+
+export const educationConvictions: { title: string; body: string }[] = [
+  { title: 'Modern education', body: 'Learning that matches real-world skills and the jobs that exist today.' },
+  { title: 'Practical, vocational skills', body: 'Hands-on training that leads directly to work and income.' },
+  { title: 'Lifelong learning', body: 'Reskilling for every age, because the world of work keeps changing.' },
+  { title: 'Community partnerships', body: 'Schools, employers and communities working together for young people.' },
+]
+
 // Career (LinkedIn: "President / Director of Global Strategy (DGS) - PUNDITSOFT"). Dates and description to be confirmed.
 export const career = {
   role: 'President and Director of Global Strategy',

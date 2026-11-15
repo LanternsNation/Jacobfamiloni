@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Reveal'
 import { PageHeader, SectionHeading } from '../components/ui'
-import { career, pillars, photos, site, timeline } from '../lib/content'
+import { beliefs, career, pillars, photos, site, timeline } from '../lib/content'
 
 export default function Story() {
   return (
@@ -47,6 +47,19 @@ export default function Story() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="container-x pt-24 md:pt-32">
+        <SectionHeading eyebrow="What he believes" title={<>Leadership is <em className="italic font-light text-gold">character.</em></>} />
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+          {beliefs.map((b, i) => (
+            <Reveal key={b.title} delay={i * 0.06}>
+              <p className="font-display text-4xl lg:text-[2.6rem] xl:text-5xl font-light">{b.title}</p>
+              <span className="mt-4 block h-px w-10 bg-gold/70" />
+              <p className="mt-4 text-ivory-2 leading-relaxed">{b.body}</p>
+            </Reveal>
+          ))}
         </div>
       </section>
 

@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router-dom'
 import { Reveal } from '../components/Reveal'
 import { CountUp, GalleryCard, MediaImage, Notice, SectionHeading, StatusPill } from '../components/ui'
+import { educationConvictions } from '../lib/content'
 import { formatDate, naira, useGallery, useImpact, useInitiatives, useOpenCohort, useTracks } from '../lib/data'
 import type { Initiative } from '../lib/types'
 import NotFound from './NotFound'
@@ -120,6 +121,19 @@ function AiSchoolDetails() {
   const c = cohort.data
   return (
     <section className="container-x pb-20 md:pb-28 space-y-24">
+      <div>
+        <SectionHeading eyebrow="The conviction behind it" title={<>Skills that lead <em className="italic font-light text-gold">to work.</em></>} intro="Dr. Familoni believes a young person's future depends on how well they are prepared for it. The AI School is built on four convictions." />
+        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {educationConvictions.map((c, k) => (
+            <Reveal key={c.title} delay={k * 0.05} className="border-t border-gold/30 pt-6">
+              <p className="font-display italic text-gold">{String(k + 1).padStart(2, '0')}</p>
+              <h3 className="mt-3 text-2xl">{c.title}</h3>
+              <p className="mt-3 text-ivory-2 leading-relaxed">{c.body}</p>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
       <div>
         <SectionHeading eyebrow="Choose your track" title="Four tracks" />
         <div className="mt-12 grid md:grid-cols-2 gap-x-12">

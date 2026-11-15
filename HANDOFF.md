@@ -35,6 +35,8 @@ Tested against the live database: anonymous users can't read applicants/payments
 
 - **15 Nov — Previous site (familoni.com) review:** reused the four pillars (His Story "Who he is") and the PUNDITSOFT role (from LinkedIn; details to confirm). **Not reused:** the Gingrich and Romney "endorsement" quotes (unverified, and they would break guardrail 4), the "Community Leaders" quote, and the campaign contact details and buttons. The Pastor Chuck Smith quote can be added once its source is supplied. The 2016 candidacy line was **moved off the hero** into the His Story timeline, pending (1) the US election-lawyer review — the old site runs an active 2028 campaign with a Donate button, and a 2022 FEC committee lists him as Republican — and (2) confirming eligibility (natural-born citizen requirement). **Do not link familoni.com from this site or share its phone/email.**
 
+- **15 Nov — Previous site "Issues" page:** only character values (Transparency, Accountability, Service, Dignity → His Story "What he believes") and education convictions (→ AI School page "The conviction behind it", reframed for Nigeria) were reused. The US policy platform (economy, global leadership, "A Presidency Focused on Results", "running for President") is deliberately **not** on this site.
+
 ## Configuration
 
 **Vercel → Project → Settings → Environment Variables** (Production + Preview), then redeploy:
