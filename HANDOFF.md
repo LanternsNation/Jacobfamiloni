@@ -39,7 +39,7 @@ Tested against the live database: anonymous users can't read applicants/payments
 
 - **15 Nov — "His Journey" slider (Home, after "His Heart For The People"):** full-bleed carousel of visits and meetings with a card queue, stepper and synchronized 600ms transitions (`src/components/JourneySlider.tsx`). It reads published Gallery items with category Visit/Meeting **and a photo**; until at least three exist it shows four placeholder slides (Obasanjo, Adeboye, Governors, Communities — names from the PRD). Captions must stay "visit"/"meeting" — never endorsement. It replaces the old "Visits and meetings" strip.
 
-- **15 Nov — AI School CTA (Home, after His Journey):** `src/components/SchoolCta.tsx`. Light grid canvas, 3D pencil cup and plant, curved arrows, floating track tiles (drawn icons — no Google/YouTube logos), rotating "Track" card, Apply Now + Play Video (plays the first YouTube ID in Settings; shows "Sponsor a seat" until one is set). Student image `public/media/school-student-520.webp` is an **owner-supplied stock photo — confirm the licence** (e.g. Freepik requires attribution on the free licence) and replace with a real Cohort 1 student when possible.
+- **15 Nov — AI School CTA (Home, after His Journey):** `src/components/SchoolCta.tsx`. Light grid canvas, 3D pencil cup and plant, curved arrows, floating track tiles (drawn icons — no Google/YouTube logos), rotating "Track" card, Apply Now + Play Video (plays the first YouTube ID in Settings; shows "Sponsor a seat" until one is set). Image: Dr. Familoni (grey-suit cutout); the gold card reads "Familoni · AI Digital School". Do not use the navy-suit headshot with lapel pins — they are Republican Party elephant pins.
 
 ## Configuration
 

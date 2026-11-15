@@ -1,19 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { site } from '../lib/content'
-import { useSettings, useTracks } from '../lib/data'
+import { useSettings } from '../lib/data'
 import { YouTubeLite } from './ui'
 
 /**
  * AI School call-to-action (Home, after His Journey).
  * Light canvas with a faint diagonal grid and line-art watermarks; headline with a 3D pencil cup;
- * cut-out of a celebrating student on a navy blob with floating track tiles and a rotating course card;
+ * cut-out of Dr. Familoni on a navy blob with floating track tiles and a rotating course card;
  * curved connector arrows. Stock models and third-party logos deliberately not used.
  */
 
 const EASE = [0.22, 1, 0.36, 1] as const
-const FALLBACK_TRACKS = ['AI for Web Development', 'AI Content Creation', 'AI for Business and Productivity', 'AI Design']
 
 /* ---------- small drawn objects (no image requests) ---------- */
 function PencilCup({ className = '' }: { className?: string }) {
@@ -118,17 +117,9 @@ function Tile({ children, className, delay = 0, tilt = 0 }: { children: React.Re
 export function SchoolCta() {
   const reduce = useReducedMotion()
   const { videos } = useSettings()
-  const tracks = useTracks()
-  const trackNames = (tracks.data?.length ? tracks.data.map((t) => t.title) : FALLBACK_TRACKS) as string[]
-  const [ti, setTi] = useState(0)
   const [playing, setPlaying] = useState(false)
   const videoId = videos.youtube_ids[0]
 
-  useEffect(() => {
-    if (reduce) return
-    const t = window.setInterval(() => setTi((n) => (n + 1) % trackNames.length), 2800)
-    return () => window.clearInterval(t)
-  }, [trackNames.length, reduce])
 
   const up = (d: number) => (reduce ? {} : { initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: '-10% 0px' }, transition: { duration: 0.8, delay: d, ease: EASE } })
 
@@ -241,15 +232,14 @@ export function SchoolCta() {
               <circle key={`${x}${y}`} cx={x} cy={y} r="2.4" fill="#F5F1E8" opacity="0.5" />
             ))}
           </svg>
-          {/* Stock photo (owner-supplied) — check the licence; replace with a real Cohort 1 student when available. */}
           <img
-            src="/media/school-student-520.webp"
-            width={364}
-            height={466}
-            alt="A young man celebrating as he looks at his phone"
+            src="/media/familoni-school-820.webp"
+            srcSet="/media/familoni-school-520.webp 520w, /media/familoni-school-820.webp 820w"
+            sizes="(min-width: 768px) 30rem, 90vw"
+            alt="Dr. Jacob Familoni"
             loading="lazy"
             decoding="async"
-            className="absolute bottom-0 left-1/2 -translate-x-[48%] h-[96%] w-auto max-w-none z-[3] drop-shadow-[0_24px_30px_rgba(11,15,26,0.25)] [mask-image:linear-gradient(to_bottom,#000_82%,transparent)]"
+            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[98%] w-auto max-w-none z-[3] drop-shadow-[0_24px_30px_rgba(11,15,26,0.25)] [mask-image:linear-gradient(to_bottom,#000_80%,transparent)]"
           />
 
           {/* tiles: AI · code · design · business */}
@@ -280,22 +270,9 @@ export function SchoolCta() {
                   <path d="M12 12H3a9 9 0 0 1 9-9z" fill="#3C9A5A" />
                 </svg>
               </span>
-              <div className="w-[9.5rem] md:w-[10.5rem] overflow-hidden">
-                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-white/85">Track</p>
-                <div className="relative h-[2.1rem]">
-                  <AnimatePresence mode="popLayout" initial={false}>
-                    <motion.p
-                      key={ti}
-                      className="absolute inset-0 text-[0.78rem] font-bold leading-[1.3] text-white"
-                      initial={reduce ? false : { y: '100%', opacity: 0 }}
-                      animate={{ y: 0, opacity: 1 }}
-                      exit={reduce ? undefined : { y: '-100%', opacity: 0 }}
-                      transition={{ duration: 0.45, ease: EASE }}
-                    >
-                      {trackNames[ti % trackNames.length]}
-                    </motion.p>
-                  </AnimatePresence>
-                </div>
+              <div className="pr-1">
+                <p className="text-[0.62rem] font-semibold uppercase tracking-[0.14em] text-white/85">Familoni</p>
+                <p className="text-[0.9rem] font-extrabold uppercase leading-[1.2] tracking-[0.04em] text-white">AI Digital School</p>
               </div>
             </div>
           </motion.div>
