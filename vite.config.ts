@@ -36,13 +36,19 @@ export default defineConfig({
       },
       workbox: {
         // App shell + all route chunks are precached, so core pages open offline.
-        globPatterns: ['**/*.{js,css,html,svg,png,webp,woff2}'],
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        globIgnores: ['media/**'], // photos are cached on first view instead of downloaded at install (saves data)
         navigateFallback: '/index.html',
         navigateFallbackDenylist: [/^\/admin/, /^\/functions\//],
         cleanupOutdatedCaches: true,
         clientsClaim: true,
         skipWaiting: true,
         runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.startsWith('/media/'),
+            handler: 'CacheFirst',
+            options: { cacheName: 'site-media', expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 60 } },
+          },
           {
             // Google Fonts stylesheet + files
             urlPattern: ({ url }) => url.origin === 'https://fonts.googleapis.com' || url.origin === 'https://fonts.gstatic.com',

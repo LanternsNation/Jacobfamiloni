@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Reveal'
-import { PlaceholderMedia } from '../components/Placeholder'
 import { PageHeader, SectionHeading } from '../components/ui'
-import { site, timeline, values } from '../lib/content'
+import { photos, site, timeline, values } from '../lib/content'
 
 export default function Story() {
   return (
@@ -11,8 +10,8 @@ export default function Story() {
 
       <section className="container-x py-20 md:py-28 grid md:grid-cols-12 gap-12">
         <Reveal className="md:col-span-5 md:sticky md:top-24 self-start">
-          <PlaceholderMedia label="Portrait / archival photo" className="aspect-[4/5] w-full" />
-          <p className="mt-3 text-xs text-muted">[PLACEHOLDER caption — photo, place, year]</p>
+          <img src={photos.archive.src} width={photos.archive.w} height={photos.archive.h} alt={photos.archive.alt} loading="lazy" decoding="async" className="aspect-[4/5] w-full object-cover object-top" />
+          <p className="mt-3 text-xs text-muted">{photos.archive.caption}</p>
         </Reveal>
         <div className="md:col-span-6 md:col-start-7 space-y-16">
           <Reveal>
@@ -26,6 +25,7 @@ export default function Story() {
             </p>
           </Reveal>
           <Reveal>
+            <img src={photos.home.src} width={photos.home.w} height={photos.home.h} alt={photos.home.alt} loading="lazy" decoding="async" className="mb-8 aspect-[4/3] w-full object-cover object-[50%_20%]" />
             <p className="eyebrow">Why he is investing at home</p>
             <blockquote className="mt-5 border-l border-gold pl-6 font-display text-2xl md:text-3xl italic font-light leading-snug">
               &ldquo;[PLACEHOLDER — In his own words: why he is building in Nigeria now.]&rdquo;

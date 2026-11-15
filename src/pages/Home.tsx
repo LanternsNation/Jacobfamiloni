@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { Reveal } from '../components/Reveal'
 import { PlaceholderMedia } from '../components/Placeholder'
 import { CohortBanner, CountUp, GalleryCard, GoldRule, ImpactCounter, InitiativeCard, SectionHeading, YouTubeLite } from '../components/ui'
-import { achievements, heroMedia, site } from '../lib/content'
+import { achievements, heroMedia, photos, site } from '../lib/content'
 import { useGallery, useInitiatives, useSettings } from '../lib/data'
 
 function Hero() {
@@ -25,8 +25,18 @@ function Hero() {
 
   return (
     <section className="grain relative min-h-[100svh] flex items-end overflow-hidden bg-ink">
-      <div className="absolute inset-0">
-        {poster && <img src={poster} alt="" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover" />}
+      <div className="absolute inset-0 md:left-[42%]">
+        {poster && (
+          <img
+            src={poster}
+            srcSet={!hero.poster_url ? heroMedia.posterSrcSet : undefined}
+            sizes="100vw"
+            alt="Dr. Jacob Familoni"
+            fetchPriority="high"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover object-[50%_22%] md:object-[50%_30%]"
+          />
+        )}
         {allowVideo && (
           <video
             ref={videoRef}
@@ -49,8 +59,11 @@ function Hero() {
             </div>
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/55 to-ink/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/5 md:via-ink/20" />
+        <div className="absolute inset-0 bg-ink/15" />
+        <div className="hidden md:block absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-ink to-transparent" />
       </div>
+      <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink/80 to-transparent" aria-hidden />
 
       <div className="container-x relative z-[2] pb-16 md:pb-24 pt-32">
         <motion.p
@@ -61,7 +74,7 @@ function Hero() {
         >
           Dr. Jacob Familoni
         </motion.p>
-        <h1 className="mt-6 text-[13vw] md:text-[8.5vw] lg:text-[7.5rem] leading-[0.92] max-w-6xl">
+        <h1 className="mt-6 text-[13vw] md:text-[7vw] lg:text-[6.5rem] leading-[0.92] max-w-6xl md:max-w-[55%]">
           {words.map((w, i) => (
             <motion.span
               key={i}
@@ -102,7 +115,7 @@ function StoryInBrief() {
   return (
     <section className="container-x py-24 md:py-36 grid md:grid-cols-12 gap-12 items-center">
       <Reveal className="md:col-span-5">
-        <PlaceholderMedia label="Portrait of Dr. Familoni" className="aspect-[4/5] w-full" />
+        <img src={photos.speaking.src} width={photos.speaking.w} height={photos.speaking.h} alt={photos.speaking.alt} loading="lazy" decoding="async" className="aspect-[4/5] w-full object-cover object-top" />
       </Reveal>
       <div className="md:col-span-6 md:col-start-7">
         <Reveal>
