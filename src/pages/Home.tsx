@@ -400,23 +400,38 @@ function TheManDesktop() {
   )
 }
 
-/* ------------------------------------------- Interlude: starting at home */
+/* ------------------------------------- Interlude: charity begins at home
+ * His heart for people, then the plan for his people at home.
+ */
 function HomeInterlude() {
+  const caption = photos.home.caption.includes('PLACEHOLDER') ? null : photos.home.caption
   return (
-    <section className="grain relative h-[92svh] min-h-[560px] overflow-hidden">
-      <img src={photos.home.src} srcSet={photos.home.srcSet} sizes="100vw" alt={photos.home.alt} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover object-[50%_25%] md:object-[70%_25%]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-ink/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/20 to-transparent" />
-      <div className="container-x relative z-[2] flex h-full flex-col justify-end pb-16 md:pb-24">
+    <section className="grain relative md:min-h-[92svh] overflow-hidden flex bg-ink">
+      <img src={photos.home.src} srcSet={photos.home.srcSet} sizes="100vw" alt={photos.home.alt} loading="lazy" decoding="async" className="absolute inset-x-0 top-0 h-[70svh] md:h-full w-full object-cover object-[62%_20%] md:object-[70%_25%] [mask-image:linear-gradient(to_bottom,#000_55%,transparent)] md:[mask-image:none]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink from-30% via-ink/40 to-ink/10 md:from-ink md:via-ink/50 md:to-ink/20" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/30 to-transparent" />
+      <div className="container-x relative z-[2] flex flex-col justify-end pb-16 md:pb-24 pt-[52svh] md:pt-32">
         <Reveal>
-          <p className="eyebrow">Nigeria</p>
-          <h2 className="mt-6 text-[17vw] md:text-[10rem] leading-[0.85] tracking-[-0.04em]">
-            Starting
+          <p className="eyebrow">A heart for people</p>
+          <h2 className="mt-6 text-[15vw] md:text-[8.5rem] leading-[0.86] tracking-[-0.04em]">
+            Charity begins
             <br />
             <em className="italic font-light text-gold">at home.</em>
           </h2>
-          <p className="mt-8 max-w-md text-ivory-2 text-lg">From Nigeria, to the world, and home again: building what lasts, where it matters most.</p>
-          <p className="mt-4 text-xs text-muted">{photos.home.caption}</p>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="mt-8 max-w-xl text-ivory text-lg md:text-xl leading-relaxed">
+            Wherever life has taken him, his heart has stayed with people. And charity begins at home: so he is bringing what he
+            has built back to Nigeria.
+          </p>
+          <p className="mt-4 max-w-xl text-ivory-2 leading-relaxed">
+            Skills for the young, dignity for widows, care for children, and character for the next generation.
+          </p>
+          <Link to="/initiatives" className="group mt-8 inline-flex items-center gap-3 text-gold">
+            <span className="h-px w-10 bg-gold transition-all duration-500 group-hover:w-16" />
+            See the work at home
+          </Link>
+          {caption && <p className="mt-6 text-xs text-muted">{caption}</p>}
         </Reveal>
       </div>
     </section>
