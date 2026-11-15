@@ -31,6 +31,8 @@ Tested against the live database: anonymous users can't read applicants/payments
 
 - **15 Nov — "The Man." section (owner copy):** Home chapter I is now an editorial "about" spread (ivory page, B&W full-length portrait, credentials MBA · RFSS · FFSS · CAIS, owner's bio, typeset signature). Owner chose to soften one sentence on the payment-bearing Home page: "lead and take America on a revolutionary journey" became "a bold vision for positive change that bridges social, economic and political divides and brings people together." Copy lives in `src/lib/content.ts` → `about`. The signature is typeset (placeholder) — replace with a scan of his real signature.
 
+- **15 Nov — "His Heart For The People" section:** letter-card layout on a deep navy USA backdrop; card subtitle "Charity begins at home." The circle photo shows Dr. Familoni with a group of young people in the US. **Owner confirmed consent for publishing the young people's faces (15 Nov).** Keep the written consent on file; remove the photo promptly if any parent or young person asks.
+
 ## Configuration
 
 **Vercel → Project → Settings → Environment Variables** (Production + Preview), then redeploy:

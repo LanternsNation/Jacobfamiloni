@@ -400,39 +400,86 @@ function TheManDesktop() {
   )
 }
 
-/* ------------------------------------- Interlude: charity begins at home
- * His heart for people, then the plan for his people at home.
+/* ------------------------------------- Interlude: His Heart For The People
+ * Letter-card layout: big serif title, arched ivory card with a round portrait breaking its top edge,
+ * name + "Charity begins at home.", copy, and a pen resting on the card. Deep navy USA backdrop.
  */
 function HomeInterlude() {
-  const caption = photos.home.caption.includes('PLACEHOLDER') ? null : photos.home.caption
   return (
-    <section className="grain relative md:min-h-[92svh] overflow-hidden flex bg-ink">
-      <img src={photos.home.src} srcSet={photos.home.srcSet} sizes="100vw" alt={photos.home.alt} loading="lazy" decoding="async" className="absolute inset-x-0 top-0 h-[70svh] md:h-full w-full object-cover object-[62%_20%] md:object-[70%_25%] [mask-image:linear-gradient(to_bottom,#000_55%,transparent)] md:[mask-image:none]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink from-30% via-ink/40 to-ink/10 md:from-ink md:via-ink/50 md:to-ink/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/30 to-transparent" />
-      <div className="container-x relative z-[2] flex flex-col justify-end pb-16 md:pb-24 pt-[52svh] md:pt-32">
+    <section className="relative overflow-hidden bg-[#0A1024] py-20 md:py-28">
+      {/* backdrop: deep navy, faded flag stripes, stars, soft red and blue light */}
+      <div className="absolute inset-0 bg-[radial-gradient(90%_60%_at_80%_10%,#1B2A5C_0%,transparent_60%),radial-gradient(70%_50%_at_10%_90%,#3A0F1E_0%,transparent_65%)]" aria-hidden />
+      <div className="absolute inset-0 opacity-[0.07] [background:repeating-linear-gradient(180deg,#B22234_0_44px,transparent_44px_88px)] [mask-image:linear-gradient(115deg,transparent_25%,#000_55%,transparent_90%)]" aria-hidden />
+      <div
+        className="absolute left-0 top-0 h-1/2 w-2/3 opacity-30 [mask-image:radial-gradient(70%_70%_at_0%_0%,#000,transparent)]"
+        style={{ background: 'radial-gradient(circle, rgba(245,241,232,0.7) 0 1.3px, transparent 1.7px) 0 0 / 30px 26px, radial-gradient(circle, rgba(245,241,232,0.7) 0 1.3px, transparent 1.7px) 15px 13px / 30px 26px' }}
+        aria-hidden
+      />
+      <div className="absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-[#B22234]/20 blur-3xl" aria-hidden />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink" aria-hidden />
+      <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-t from-transparent to-ink/60" aria-hidden />
+      <div className="absolute -left-20 top-1/3 h-64 w-64 rounded-full bg-[#3C3B6E]/40 blur-3xl" aria-hidden />
+
+      <div className="relative z-[2] mx-auto w-full max-w-[34rem] md:max-w-6xl px-6 md:px-8 md:grid md:grid-cols-12 md:gap-10 md:items-center">
+        <div className="md:col-span-5">
+        {/* badge */}
         <Reveal>
-          <p className="eyebrow">A heart for people</p>
-          <h2 className="mt-6 text-[15vw] md:text-[8.5rem] leading-[0.86] tracking-[-0.04em]">
-            Charity begins
+          <div className="-ml-6 mb-12 inline-flex h-16 w-24 items-center justify-end rounded-r-2xl bg-ivory/95 pr-5 shadow-xl md:-ml-8 md:mb-10 md:h-14 md:w-20" aria-hidden>
+            <svg viewBox="0 0 24 24" className="h-7 w-7 fill-[#B22234]"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 4.5 6.6 4.5c2 0 3.6 1.1 4.4 2.6.8-1.5 2.4-2.6 4.4-2.6 3.6 0 5.7 3.7 4.2 7.2C19.5 16.4 12 21 12 21z"/></svg>
+          </div>
+        </Reveal>
+
+        {/* title */}
+        <Reveal>
+          <h2 className="font-display font-light text-ivory text-[3.1rem] md:text-[5.2rem] lg:text-[6rem] leading-[0.88] tracking-[-0.02em]">
+            His Heart
             <br />
-            <em className="italic font-light text-gold">at home.</em>
+            For The People
           </h2>
+          <span className="mt-4 grid h-9 w-9 place-items-center rounded-full bg-ivory/85 text-[#B22234]" aria-hidden>
+            <svg viewBox="0 0 24 24" className="h-4 w-4 fill-current"><path d="M12 21s-7.5-4.6-9.6-9.3C.9 8.2 3 4.5 6.6 4.5c2 0 3.6 1.1 4.4 2.6.8-1.5 2.4-2.6 4.4-2.6 3.6 0 5.7 3.7 4.2 7.2C19.5 16.4 12 21 12 21z"/></svg>
+          </span>
         </Reveal>
-        <Reveal delay={0.1}>
-          <p className="mt-8 max-w-xl text-ivory text-lg md:text-xl leading-relaxed">
-            Wherever life has taken him, his heart has stayed with people. And charity begins at home: so he is bringing what he
-            has built back to Nigeria.
-          </p>
-          <p className="mt-4 max-w-xl text-ivory-2 leading-relaxed">
-            Skills for the young, dignity for widows, care for children, and character for the next generation.
-          </p>
-          <Link to="/initiatives" className="group mt-8 inline-flex items-center gap-3 text-gold">
-            <span className="h-px w-10 bg-gold transition-all duration-500 group-hover:w-16" />
-            See the work at home
-          </Link>
-          {caption && <p className="mt-6 text-xs text-muted">{caption}</p>}
+
+          <p className="hidden md:block mt-8 max-w-sm text-ivory-2 leading-relaxed">A Nigerian based in the United States, with his heart still at home.</p>
+        </div>
+
+        {/* arched card with portrait breaking its top edge */}
+        <Reveal delay={0.08} className="md:col-span-6 md:col-start-7 md:max-w-[32rem] md:pt-24">
+          <div className="relative mt-6 md:mt-0">
+            <div className="absolute -top-16 right-[-0.25rem] z-[3] h-40 w-40 md:h-56 md:w-56 md:-top-28 overflow-hidden rounded-full border-[6px] border-[#0A1024] shadow-2xl">
+              <img src="/media/familoni-youth-480.webp" width={480} height={480} alt="Dr. Jacob Familoni with a group of young people in the United States" loading="lazy" decoding="async" className="h-full w-full object-cover object-[45%_30%]" />
+            </div>
+            <div className="relative rounded-t-sm rounded-b-[12rem] md:rounded-b-[16rem] bg-ivory px-7 md:px-10 pt-28 md:pt-36 pb-28 shadow-[0_40px_80px_rgba(0,0,0,0.45)]">
+              <p className="font-display text-[1.75rem] md:text-[2rem] font-medium leading-tight text-ink">
+                <span className="italic text-[#B22234] font-light">Dr.</span> Jacob Familoni
+              </p>
+              <p className="mt-1 font-display italic text-ink/70 text-lg">Charity begins at home.</p>
+              <div className="mt-6 space-y-4 font-display text-[1.02rem] md:text-[1.08rem] leading-[1.65] text-ink/85 text-justify [hyphens:auto]">
+                <p>Wherever life has taken him, his heart has stayed with people: the young who need a chance, the widow who needs a hand, the child who needs care.</p>
+                <p>So he is bringing what he has built back to Nigeria. Skills for the young, dignity for widows, care for children, and character for the next generation.</p>
+              </div>
+              <Link to="/initiatives" className="group mt-7 inline-flex items-center gap-3 text-sm text-[#B22234]">
+                <span className="h-px w-8 bg-[#B22234] transition-all duration-500 group-hover:w-14" />
+                See the work at home
+              </Link>
+              {/* pen resting on the card */}
+              <svg viewBox="0 0 260 40" className="absolute bottom-16 right-2 w-44 md:w-52 -rotate-[24deg] drop-shadow-[0_8px_8px_rgba(0,0,0,0.35)]" aria-hidden>
+                <defs>
+                  <linearGradient id="penbody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#3a3d47" /><stop offset="0.5" stopColor="#0b0f1a" /><stop offset="1" stopColor="#1d212b" /></linearGradient>
+                  <linearGradient id="pentrim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#f3e3b5" /><stop offset="1" stopColor="#9c7a36" /></linearGradient>
+                </defs>
+                <path d="M6 20 L40 13 L40 27 Z" fill="url(#pentrim)" />
+                <rect x="40" y="12" width="150" height="16" rx="3" fill="url(#penbody)" />
+                <rect x="112" y="12" width="6" height="16" fill="url(#pentrim)" />
+                <rect x="190" y="11" width="62" height="18" rx="8" fill="url(#penbody)" />
+                <rect x="196" y="7" width="48" height="4" rx="2" fill="url(#pentrim)" />
+              </svg>
+            </div>
+          </div>
         </Reveal>
+
+        <p className="mt-12 text-center md:col-span-12 text-[0.7rem] tracking-[0.32em] uppercase text-ivory/70">Starting at home · Nigeria</p>
       </div>
     </section>
   )
